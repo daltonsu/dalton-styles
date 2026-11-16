@@ -1,0 +1,1617 @@
+[
+  {
+    "id": "button",
+    "label": "按钮",
+    "en": "Button",
+    "group": "通用与布局",
+    "description": "触发操作，并明确主次层级。",
+    "examples": [
+      {
+        "title": "类型",
+        "wide": false
+      },
+      {
+        "title": "尺寸与图标",
+        "wide": false
+      },
+      {
+        "title": "加载与禁用",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "icon",
+    "label": "图标",
+    "en": "Icon",
+    "group": "通用与布局",
+    "description": "使用 Ant Design 图标，统一操作与状态的视觉表达。",
+    "examples": [
+      {
+        "title": "常用图标",
+        "wide": false
+      },
+      {
+        "title": "操作与状态",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "typography",
+    "label": "排版",
+    "en": "Typography",
+    "group": "通用与布局",
+    "description": "正文与表格 14px，辅助 12px，标题按 16 / 20 / 24px 递进。",
+    "examples": [
+      {
+        "title": "标题层级",
+        "wide": false
+      },
+      {
+        "title": "文本与复制",
+        "wide": false
+      },
+      {
+        "title": "省略与展开",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "link",
+    "label": "链接",
+    "en": "Link",
+    "group": "通用与布局",
+    "description": "区分页面跳转与文件下载。",
+    "examples": [
+      {
+        "title": "页面链接",
+        "wide": false
+      },
+      {
+        "title": "下载链接",
+        "wide": false
+      },
+      {
+        "title": "文件下载卡片",
+        "wide": true
+      }
+    ]
+  },
+  {
+    "id": "divider",
+    "label": "分割线",
+    "en": "Divider",
+    "group": "通用与布局",
+    "description": "划分内容与操作区域。",
+    "examples": [
+      {
+        "title": "水平分割",
+        "wide": false
+      },
+      {
+        "title": "带标题 / 垂直分割",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "space",
+    "label": "间距",
+    "en": "Space",
+    "group": "通用与布局",
+    "description": "基于 4px 网格组织组件。",
+    "examples": [
+      {
+        "title": "水平 8 / 16px",
+        "wide": false
+      },
+      {
+        "title": "垂直与换行",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "grid",
+    "label": "栅格",
+    "en": "Grid",
+    "group": "通用与布局",
+    "description": "通过 CSS Grid 实现等分、跨列和响应式布局。",
+    "examples": [
+      {
+        "title": "两列 / 三列",
+        "wide": false
+      },
+      {
+        "title": "四列 / 六列",
+        "wide": false
+      },
+      {
+        "title": "一行五列",
+        "wide": true
+      },
+      {
+        "title": "一行八列",
+        "wide": true
+      },
+      {
+        "title": "一行十二列",
+        "wide": true
+      },
+      {
+        "title": "跨列组合",
+        "wide": false
+      },
+      {
+        "title": "响应式 / 最小列宽",
+        "wide": true
+      }
+    ]
+  },
+  {
+    "id": "layout",
+    "label": "布局",
+    "en": "Layout",
+    "group": "通用与布局",
+    "description": "后台主导航、页头、内容和页脚布局。",
+    "examples": [
+      {
+        "title": "侧栏布局",
+        "wide": false
+      },
+      {
+        "title": "顶部布局",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "flex",
+    "label": "弹性布局",
+    "en": "Flex",
+    "group": "通用与布局",
+    "description": "控制排列方向、对齐与自适应。",
+    "examples": [
+      {
+        "title": "对齐方式",
+        "wide": false
+      },
+      {
+        "title": "方向与自动换行",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "splitter",
+    "label": "分割面板",
+    "en": "Splitter",
+    "group": "通用与布局",
+    "description": "拖动分隔条调整两个区域的宽度。",
+    "examples": [
+      {
+        "title": "客户 / 详情",
+        "wide": false
+      },
+      {
+        "title": "筛选 / 结果",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "navigation",
+    "label": "导航栏",
+    "en": "Navigation",
+    "group": "导航",
+    "description": "应用级侧边、顶部与组合导航；同步页面归属、折叠状态和移动入口。",
+    "examples": [
+      {
+        "title": "深色侧边导航",
+        "wide": true
+      },
+      {
+        "title": "浅色侧边导航",
+        "wide": true
+      },
+      {
+        "title": "顶部导航",
+        "wide": true
+      },
+      {
+        "title": "顶部与侧栏组合",
+        "wide": true
+      },
+      {
+        "title": "移动端抽屉导航",
+        "wide": true
+      }
+    ]
+  },
+  {
+    "id": "menu",
+    "label": "菜单",
+    "en": "Menu",
+    "group": "导航",
+    "description": "在同级模块间切换。",
+    "examples": [
+      {
+        "title": "垂直菜单",
+        "wide": false
+      },
+      {
+        "title": "分组 / 折叠",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "breadcrumb",
+    "label": "面包屑",
+    "en": "Breadcrumb",
+    "group": "导航",
+    "description": "呈现页面在层级中的位置。",
+    "examples": [
+      {
+        "title": "基础",
+        "wide": false
+      },
+      {
+        "title": "带图标",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "tabs",
+    "label": "标签页",
+    "en": "Tabs",
+    "group": "导航",
+    "description": "在相关内容面板间切换。",
+    "examples": [
+      {
+        "title": "线条标签",
+        "wide": false
+      },
+      {
+        "title": "卡片标签",
+        "wide": false
+      },
+      {
+        "title": "垂直标签",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "dropdown",
+    "label": "下拉菜单",
+    "en": "Dropdown",
+    "group": "导航",
+    "description": "浮层菜单统一间距、圆角与选中反馈。",
+    "examples": [
+      {
+        "title": "标准操作",
+        "wide": false
+      },
+      {
+        "title": "危险操作",
+        "wide": false
+      },
+      {
+        "title": "禁用项",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "pagination",
+    "label": "分页",
+    "en": "Pagination",
+    "group": "导航",
+    "description": "总数、页码、跳转与每页条数同排，窄屏按组换行。",
+    "examples": [
+      {
+        "title": "页码与快速跳转",
+        "wide": true
+      },
+      {
+        "title": "简洁模式",
+        "wide": true
+      },
+      {
+        "title": "多页 / 省略页码",
+        "wide": true
+      }
+    ]
+  },
+  {
+    "id": "steps",
+    "label": "步骤条",
+    "en": "Steps",
+    "group": "导航",
+    "description": "展示多步骤任务的进度。",
+    "examples": [
+      {
+        "title": "横向步骤",
+        "wide": false
+      },
+      {
+        "title": "纵向步骤",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "anchor",
+    "label": "锚点",
+    "en": "Anchor",
+    "group": "导航",
+    "description": "在长内容内定位段落。",
+    "examples": [
+      {
+        "title": "局部滚动定位",
+        "wide": false
+      },
+      {
+        "title": "页面导航",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "affix",
+    "label": "固钉",
+    "en": "Affix",
+    "group": "导航",
+    "description": "在滚动容器中固定筛选或操作。",
+    "examples": [
+      {
+        "title": "顶部固定",
+        "wide": false
+      },
+      {
+        "title": "底部操作",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "back-top",
+    "label": "回到顶部",
+    "en": "BackTop",
+    "group": "导航",
+    "description": "返回当前滚动容器顶部。",
+    "examples": [
+      {
+        "title": "文字按钮",
+        "wide": false
+      },
+      {
+        "title": "图标按钮",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "input",
+    "label": "输入框",
+    "en": "Input",
+    "group": "数据录入",
+    "description": "单行文本、前后缀与状态。",
+    "examples": [
+      {
+        "title": "默认 / 可清空",
+        "wide": false
+      },
+      {
+        "title": "前后缀",
+        "wide": false
+      },
+      {
+        "title": "错误 / 字数限制",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "search",
+    "label": "搜索",
+    "en": "Search",
+    "group": "数据录入",
+    "description": "支持即时搜索、显式提交和空结果。",
+    "examples": [
+      {
+        "title": "即时搜索",
+        "wide": false
+      },
+      {
+        "title": "提交搜索",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "textarea",
+    "label": "多行文本",
+    "en": "Textarea",
+    "group": "数据录入",
+    "description": "用于备注、描述与较长文本。",
+    "examples": [
+      {
+        "title": "自动高度",
+        "wide": false
+      },
+      {
+        "title": "字数与只读",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "input-number",
+    "label": "数字输入框",
+    "en": "InputNumber",
+    "group": "数据录入",
+    "description": "在明确范围内增减数值。",
+    "examples": [
+      {
+        "title": "整数步进",
+        "wide": false
+      },
+      {
+        "title": "小数 / 大步长",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "select",
+    "label": "选择器",
+    "en": "Select",
+    "group": "数据录入",
+    "description": "统一外观的单选下拉，整块点击打开。",
+    "examples": [
+      {
+        "title": "基础 / 禁用",
+        "wide": false
+      },
+      {
+        "title": "可搜索",
+        "wide": false
+      },
+      {
+        "title": "分组 / 禁用选项",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "multi-select",
+    "label": "多选选择器",
+    "en": "MultiSelect",
+    "group": "数据录入",
+    "description": "下拉多选并在触发器显示标签。",
+    "examples": [
+      {
+        "title": "多选城市 / 最多 3 项",
+        "wide": false
+      },
+      {
+        "title": "默认选择 / 搜索",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "autocomplete",
+    "label": "自动完成",
+    "en": "AutoComplete",
+    "group": "数据录入",
+    "description": "输入时显示可选择建议。",
+    "examples": [
+      {
+        "title": "城市建议",
+        "wide": false
+      },
+      {
+        "title": "邮箱补全",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "cascader",
+    "label": "级联选择",
+    "en": "Cascader",
+    "group": "数据录入",
+    "description": "按父级联动选择子级，切换父级清除旧子级。",
+    "examples": [
+      {
+        "title": "地区级联",
+        "wide": false
+      },
+      {
+        "title": "默认路径",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "tree-select",
+    "label": "树选择",
+    "en": "TreeSelect",
+    "group": "数据录入",
+    "description": "在层级数据中选择多个叶子节点。",
+    "examples": [
+      {
+        "title": "层级多选",
+        "wide": false
+      },
+      {
+        "title": "下拉树选择",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "checkbox",
+    "label": "复选框",
+    "en": "Checkbox",
+    "group": "数据录入",
+    "description": "选择多个独立选项。",
+    "examples": [
+      {
+        "title": "状态",
+        "wide": false
+      },
+      {
+        "title": "全选 / 半选",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "radio",
+    "label": "单选框",
+    "en": "Radio",
+    "group": "数据录入",
+    "description": "在互斥选项中选择一个。",
+    "examples": [
+      {
+        "title": "基础单选",
+        "wide": false
+      },
+      {
+        "title": "禁用 / 单列",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "switch",
+    "label": "开关",
+    "en": "Switch",
+    "group": "数据录入",
+    "description": "切换即生效的二元状态。",
+    "examples": [
+      {
+        "title": "开关状态",
+        "wide": false
+      },
+      {
+        "title": "禁用状态",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "slider",
+    "label": "滑动输入条",
+    "en": "Slider",
+    "group": "数据录入",
+    "description": "在连续区间内快速选择数值。",
+    "examples": [
+      {
+        "title": "基础 / 刻度",
+        "wide": false
+      },
+      {
+        "title": "双端区间",
+        "wide": false
+      },
+      {
+        "title": "禁用",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "rate",
+    "label": "评分",
+    "en": "Rate",
+    "group": "数据录入",
+    "description": "用等级表示优先级或满意度。",
+    "examples": [
+      {
+        "title": "五星评分",
+        "wide": false
+      },
+      {
+        "title": "文字等级",
+        "wide": false
+      },
+      {
+        "title": "半星精度",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "date-picker",
+    "label": "日期选择器",
+    "en": "DatePicker",
+    "group": "数据录入",
+    "description": "整块控件打开日历，支持月份切换与范围限制。",
+    "examples": [
+      {
+        "title": "日期 / 空值",
+        "wide": false
+      },
+      {
+        "title": "限制日期 / 禁用",
+        "wide": false
+      },
+      {
+        "title": "月份选择",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "range-picker",
+    "label": "日期范围",
+    "en": "RangePicker",
+    "group": "数据录入",
+    "description": "成对选择日期并限制结束日期不早于开始。",
+    "examples": [
+      {
+        "title": "起止日期",
+        "wide": false
+      },
+      {
+        "title": "快捷范围",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "time-picker",
+    "label": "时间选择器",
+    "en": "TimePicker",
+    "group": "数据录入",
+    "description": "统一时分面板，整块点击打开。",
+    "examples": [
+      {
+        "title": "默认 / 空值",
+        "wide": false
+      },
+      {
+        "title": "只读 / 禁用",
+        "wide": false
+      },
+      {
+        "title": "时段 / 15 分钟间隔",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "color-picker",
+    "label": "颜色选择器",
+    "en": "ColorPicker",
+    "group": "数据录入",
+    "description": "预设颜色与系统颜色面板。",
+    "examples": [
+      {
+        "title": "品牌预设",
+        "wide": false
+      },
+      {
+        "title": "自由选色",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "upload",
+    "label": "上传",
+    "en": "Upload",
+    "group": "数据录入",
+    "description": "选择本地文件并展示列表，不自动发送到服务器。",
+    "examples": [
+      {
+        "title": "单文件",
+        "wide": false
+      },
+      {
+        "title": "多文件 / 图片",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "transfer",
+    "label": "穿梭框",
+    "en": "Transfer",
+    "group": "数据录入",
+    "description": "在两个集合之间移动选中项。",
+    "examples": [
+      {
+        "title": "城市分配",
+        "wide": false
+      },
+      {
+        "title": "团队范围",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "form",
+    "label": "表单",
+    "en": "Form",
+    "group": "数据录入",
+    "description": "标签与必填标记同行，字段和错误说明成组排列。",
+    "examples": [
+      {
+        "title": "顶部标签",
+        "wide": false
+      },
+      {
+        "title": "左侧标签",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "input-tag",
+    "label": "标签输入",
+    "en": "InputTag",
+    "group": "数据录入",
+    "description": "自由添加、去重和删除标签。",
+    "examples": [
+      {
+        "title": "自由输入",
+        "wide": false
+      },
+      {
+        "title": "最多 5 项",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "mentions",
+    "label": "提及",
+    "en": "Mentions",
+    "group": "数据录入",
+    "description": "输入 @ 时选择成员并插入文本。",
+    "examples": [
+      {
+        "title": "团队成员",
+        "wide": false
+      },
+      {
+        "title": "预置文本",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "otp",
+    "label": "验证码输入",
+    "en": "InputOTP",
+    "group": "数据录入",
+    "description": "分格输入固定长度数字。",
+    "examples": [
+      {
+        "title": "六位验证码",
+        "wide": false
+      },
+      {
+        "title": "四位 PIN",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "table",
+    "label": "表格",
+    "en": "Table",
+    "group": "数据展示",
+    "description": "默认单行展示，截断文本悬停或聚焦查看全文；支持排序、选择和密度。",
+    "examples": [
+      {
+        "title": "舒适密度 / 排序",
+        "wide": true
+      },
+      {
+        "title": "紧凑密度",
+        "wide": false
+      },
+      {
+        "title": "勾选行 / 空数据",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "list",
+    "label": "列表",
+    "en": "List",
+    "group": "数据展示",
+    "description": "以行形式展示轻量数据。",
+    "examples": [
+      {
+        "title": "带头像列表",
+        "wide": false
+      },
+      {
+        "title": "操作列表",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "card",
+    "label": "卡片",
+    "en": "Card",
+    "group": "数据展示",
+    "description": "以标题、正文、元信息与操作区组织同一主题，提供内容和状态变体。",
+    "examples": [
+      {
+        "title": "基础信息卡片",
+        "wide": false
+      },
+      {
+        "title": "可选择卡片",
+        "wide": true
+      },
+      {
+        "title": "标题操作与页脚",
+        "wide": false
+      },
+      {
+        "title": "封面、元信息与操作栏",
+        "wide": false
+      },
+      {
+        "title": "带标签页的卡片",
+        "wide": false
+      },
+      {
+        "title": "网格卡片",
+        "wide": true
+      },
+      {
+        "title": "内嵌卡片",
+        "wide": false
+      },
+      {
+        "title": "加载与内容切换",
+        "wide": false
+      },
+      {
+        "title": "尺寸与边框变体",
+        "wide": true
+      },
+      {
+        "title": "列表管理标题",
+        "wide": true
+      }
+    ]
+  },
+  {
+    "id": "statistic",
+    "label": "统计数值",
+    "en": "Statistic",
+    "group": "数据展示",
+    "description": "突出金额、数量与变化趋势。",
+    "examples": [
+      {
+        "title": "金额 / 数量",
+        "wide": false
+      },
+      {
+        "title": "动态数值 / 倒计时",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "descriptions",
+    "label": "描述列表",
+    "en": "Descriptions",
+    "group": "数据展示",
+    "description": "展示详情字段的键值关系。",
+    "examples": [
+      {
+        "title": "单列详情",
+        "wide": false
+      },
+      {
+        "title": "带边框 / 长文本",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "avatar",
+    "label": "头像",
+    "en": "Avatar",
+    "group": "数据展示",
+    "description": "使用文字、颜色和形状区分成员。",
+    "examples": [
+      {
+        "title": "圆形 / 方形",
+        "wide": false
+      },
+      {
+        "title": "尺寸 / 群组",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "badge",
+    "label": "徽标",
+    "en": "Badge",
+    "group": "数据展示",
+    "description": "展示数量、点状提醒和状态。",
+    "examples": [
+      {
+        "title": "状态徽标",
+        "wide": false
+      },
+      {
+        "title": "数量 / 小红点",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "tag",
+    "label": "标签",
+    "en": "Tag",
+    "group": "数据展示",
+    "description": "分类标记、可关闭或可选择。",
+    "examples": [
+      {
+        "title": "语义颜色",
+        "wide": false
+      },
+      {
+        "title": "可关闭 / 可选择",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "tree",
+    "label": "树形控件",
+    "en": "Tree",
+    "group": "数据展示",
+    "description": "展示可折叠层级数据。",
+    "examples": [
+      {
+        "title": "层级展开",
+        "wide": false
+      },
+      {
+        "title": "带勾选",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "collapse",
+    "label": "折叠面板",
+    "en": "Collapse",
+    "group": "数据展示",
+    "description": "按需展开详细内容。",
+    "examples": [
+      {
+        "title": "多个展开",
+        "wide": false
+      },
+      {
+        "title": "手风琴",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "timeline",
+    "label": "时间轴",
+    "en": "Timeline",
+    "group": "数据展示",
+    "description": "按时间组织事件和状态。",
+    "examples": [
+      {
+        "title": "基础时间轴",
+        "wide": false
+      },
+      {
+        "title": "待完成节点",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "calendar",
+    "label": "日历",
+    "en": "Calendar",
+    "group": "数据展示",
+    "description": "查看月度安排并选择日期。",
+    "examples": [
+      {
+        "title": "带事项日历",
+        "wide": true
+      },
+      {
+        "title": "迷你日历",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "carousel",
+    "label": "轮播",
+    "en": "Carousel",
+    "group": "数据展示",
+    "description": "图片与内容卡片，支持箭头、指示点和键盘切换。",
+    "examples": [
+      {
+        "title": "图片轮播",
+        "wide": false
+      },
+      {
+        "title": "内容轮播",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "image",
+    "label": "图片",
+    "en": "Image",
+    "group": "数据展示",
+    "description": "图片预览与占位状态。",
+    "examples": [
+      {
+        "title": "点击预览",
+        "wide": false
+      },
+      {
+        "title": "另一比例 / 占位",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "segmented",
+    "label": "分段控制器",
+    "en": "Segmented",
+    "group": "数据展示",
+    "description": "在少量同级模式间切换。",
+    "examples": [
+      {
+        "title": "视图切换",
+        "wide": false
+      },
+      {
+        "title": "时间粒度",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "empty",
+    "label": "空状态",
+    "en": "Empty",
+    "group": "数据展示",
+    "description": "区分无数据与无搜索结果，并提供下一步。",
+    "examples": [
+      {
+        "title": "暂无数据",
+        "wide": false
+      },
+      {
+        "title": "无搜索结果",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "watermark",
+    "label": "水印",
+    "en": "Watermark",
+    "group": "数据展示",
+    "description": "为页面或内容区域增加可见标记。",
+    "examples": [
+      {
+        "title": "文本水印",
+        "wide": false
+      },
+      {
+        "title": "动态水印",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "comment",
+    "label": "评论",
+    "en": "Comment",
+    "group": "数据展示",
+    "description": "展示成员、时间、正文和回复。",
+    "examples": [
+      {
+        "title": "基础评论",
+        "wide": false
+      },
+      {
+        "title": "发表评论",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "alert",
+    "label": "警告提示",
+    "en": "Alert",
+    "group": "反馈",
+    "description": "持续展示当前问题或状态。",
+    "examples": [
+      {
+        "title": "成功 / 信息",
+        "wide": false
+      },
+      {
+        "title": "警告 / 错误 / 可关闭",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "message",
+    "label": "全局消息",
+    "en": "Message",
+    "group": "反馈",
+    "description": "短暂反馈用户刚完成的操作。",
+    "examples": [
+      {
+        "title": "成功 / 错误",
+        "wide": false
+      },
+      {
+        "title": "加载后反馈",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "notification",
+    "label": "通知",
+    "en": "Notification",
+    "group": "反馈",
+    "description": "用标题和正文展示较完整的信息。",
+    "examples": [
+      {
+        "title": "任务通知",
+        "wide": false
+      },
+      {
+        "title": "可手动关闭",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "modal",
+    "label": "对话框",
+    "en": "Modal",
+    "group": "反馈",
+    "description": "按任务选择尺寸与层级，让确认、编辑和内容预览各有合适的空间。",
+    "examples": [
+      {
+        "title": "标准对话框",
+        "wide": false
+      },
+      {
+        "title": "表单对话框",
+        "wide": false
+      },
+      {
+        "title": "危险确认",
+        "wide": false
+      },
+      {
+        "title": "长内容预览",
+        "wide": false
+      },
+      {
+        "title": "异步确认与重试",
+        "wide": false
+      },
+      {
+        "title": "尺寸选择",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "drawer",
+    "label": "抽屉",
+    "en": "Drawer",
+    "group": "反馈",
+    "description": "保留列表上下文，查看详情或编辑。",
+    "examples": [
+      {
+        "title": "详情抽屉",
+        "wide": false
+      },
+      {
+        "title": "编辑抽屉",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "popconfirm",
+    "label": "气泡确认",
+    "en": "Popconfirm",
+    "group": "反馈",
+    "description": "在操作旁确认轻量变更。",
+    "examples": [
+      {
+        "title": "普通确认",
+        "wide": false
+      },
+      {
+        "title": "危险操作",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "popover",
+    "label": "气泡卡片",
+    "en": "Popover",
+    "group": "反馈",
+    "description": "显示与当前元素相关的补充信息。",
+    "examples": [
+      {
+        "title": "点击触发",
+        "wide": false
+      },
+      {
+        "title": "悬停与焦点",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "tooltip",
+    "label": "文字提示",
+    "en": "Tooltip",
+    "group": "反馈",
+    "description": "提供可用键盘关闭、可移入阅读的补充说明。",
+    "examples": [
+      {
+        "title": "文字提示",
+        "wide": false
+      },
+      {
+        "title": "图标提示",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "progress",
+    "label": "进度条",
+    "en": "Progress",
+    "group": "反馈",
+    "description": "展示确定性任务进度。",
+    "examples": [
+      {
+        "title": "线性进度",
+        "wide": false
+      },
+      {
+        "title": "环形进度",
+        "wide": false
+      },
+      {
+        "title": "状态",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "skeleton",
+    "label": "骨架屏",
+    "en": "Skeleton",
+    "group": "反馈",
+    "description": "在已有页面结构中等待数据。",
+    "examples": [
+      {
+        "title": "列表骨架",
+        "wide": false
+      },
+      {
+        "title": "卡片骨架",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "spin",
+    "label": "加载中",
+    "en": "Spin",
+    "group": "反馈",
+    "description": "展示短时等待状态。",
+    "examples": [
+      {
+        "title": "行内加载",
+        "wide": false
+      },
+      {
+        "title": "局部加载",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "result",
+    "label": "结果页",
+    "en": "Result",
+    "group": "反馈",
+    "description": "展示完整任务结果和后续操作。",
+    "examples": [
+      {
+        "title": "成功",
+        "wide": false
+      },
+      {
+        "title": "错误 / 重试",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "tour",
+    "label": "引导",
+    "en": "Tour",
+    "group": "反馈",
+    "description": "用少量步骤说明关键操作。",
+    "examples": [
+      {
+        "title": "三步引导",
+        "wide": false
+      },
+      {
+        "title": "两步引导",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "line-chart",
+    "label": "折线图",
+    "en": "LineChart",
+    "group": "数据可视化",
+    "description": "比较时间序列的变化趋势。",
+    "examples": [
+      {
+        "title": "单条折线",
+        "wide": false
+      },
+      {
+        "title": "多系列对比 · 紧凑布局",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "area-chart",
+    "label": "面积图",
+    "en": "AreaChart",
+    "group": "数据可视化",
+    "description": "强调时间趋势与量级，透明填充避免遮挡。",
+    "examples": [
+      {
+        "title": "单系列面积",
+        "wide": false
+      },
+      {
+        "title": "对比面积",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "bar-chart",
+    "label": "柱状图",
+    "en": "BarChart",
+    "group": "数据可视化",
+    "description": "比较类别数值或同类的多个系列。",
+    "examples": [
+      {
+        "title": "基础柱状",
+        "wide": false
+      },
+      {
+        "title": "分组柱状",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "stacked-chart",
+    "label": "堆叠柱状图",
+    "en": "StackedBar",
+    "group": "数据可视化",
+    "description": "同时呈现总量和组成。",
+    "examples": [
+      {
+        "title": "双系列堆叠",
+        "wide": false
+      },
+      {
+        "title": "三系列堆叠",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "horizontal-chart",
+    "label": "条形图",
+    "en": "HorizontalBar",
+    "group": "数据可视化",
+    "description": "横向比较名称较长的类别。",
+    "examples": [
+      {
+        "title": "城市客户数量",
+        "wide": false
+      },
+      {
+        "title": "分类色条",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "pie-chart",
+    "label": "饼图",
+    "en": "PieChart",
+    "group": "数据可视化",
+    "description": "表达少量类别的占比。",
+    "examples": [
+      {
+        "title": "客户城市占比",
+        "wide": false
+      },
+      {
+        "title": "业务来源占比",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "donut-chart",
+    "label": "环形图",
+    "en": "DonutChart",
+    "group": "数据可视化",
+    "description": "在占比图中心展示汇总值。",
+    "examples": [
+      {
+        "title": "客户城市构成",
+        "wide": false
+      },
+      {
+        "title": "合同金额组成",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "scatter-chart",
+    "label": "散点图",
+    "en": "ScatterChart",
+    "group": "数据可视化",
+    "description": "分析两个数值维度之间的分布。",
+    "examples": [
+      {
+        "title": "客户规模 / 收入",
+        "wide": false
+      },
+      {
+        "title": "气泡散点",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "radar-chart",
+    "label": "雷达图",
+    "en": "RadarChart",
+    "group": "数据可视化",
+    "description": "比较同一量纲的多个维度。",
+    "examples": [
+      {
+        "title": "团队能力",
+        "wide": false
+      },
+      {
+        "title": "团队对比",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "gauge-chart",
+    "label": "仪表盘",
+    "en": "GaugeChart",
+    "group": "数据可视化",
+    "description": "展示指标相对于目标的完成度。",
+    "examples": [
+      {
+        "title": "本月完成率",
+        "wide": false
+      },
+      {
+        "title": "高完成率",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "heatmap-chart",
+    "label": "热力图",
+    "en": "Heatmap",
+    "group": "数据可视化",
+    "description": "通过颜色深浅比较二维密度。",
+    "examples": [
+      {
+        "title": "团队周活跃",
+        "wide": false
+      },
+      {
+        "title": "时段咨询密度",
+        "wide": false
+      }
+    ]
+  },
+  {
+    "id": "funnel-chart",
+    "label": "漏斗图",
+    "en": "FunnelChart",
+    "group": "数据可视化",
+    "description": "查看按阶段递减的转化数量。",
+    "examples": [
+      {
+        "title": "销售转化",
+        "wide": false
+      },
+      {
+        "title": "注册转化",
+        "wide": false
+      }
+    ]
+  }
+]

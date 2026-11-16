@@ -1,0 +1,902 @@
+{
+  "customers": [
+    {
+      "id": "CUS-0001",
+      "name": "Sagara Retail",
+      "industry": "零售与消费",
+      "contact": "Andi Pratama",
+      "city": "Jakarta",
+      "amount": 128000000,
+      "status": "active",
+      "owner": "maya",
+      "email": "contact1@example.com",
+      "phone": "+62 812 0000 0101",
+      "source": "合作伙伴",
+      "followup": "2026-11-02",
+      "created": "2026-06-01",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0002",
+      "name": "Kopi Senja Nusantara",
+      "industry": "餐饮与生活",
+      "contact": "Dewi Lestari",
+      "city": "Bandung",
+      "amount": 45000000,
+      "status": "negotiating",
+      "owner": "rizky",
+      "email": "contact2@example.com",
+      "phone": "+62 812 0000 0102",
+      "source": "官网咨询",
+      "followup": "2026-11-03",
+      "created": "2026-07-02",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0003",
+      "name": "Akar Digital Studio",
+      "industry": "科技与服务",
+      "contact": "Budi Santoso",
+      "city": "Jakarta",
+      "amount": 86000000,
+      "status": "active",
+      "owner": "sarah",
+      "email": "contact3@example.com",
+      "phone": "+62 812 0000 0103",
+      "source": "线下活动",
+      "followup": "2026-11-04",
+      "created": "2026-08-03",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0004",
+      "name": "Lintas Logistik",
+      "industry": "物流与运输",
+      "contact": "Siti Rahma",
+      "city": "Surabaya",
+      "amount": 215000000,
+      "status": "potential",
+      "owner": "maya",
+      "email": "contact4@example.com",
+      "phone": "+62 812 0000 0104",
+      "source": "主动拓客",
+      "followup": "2026-11-05",
+      "created": "2026-09-04",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0005",
+      "name": "Bumi Rasa Group",
+      "industry": "餐饮与生活",
+      "contact": "Agus Wijaya",
+      "city": "Bali",
+      "amount": 67500000,
+      "status": "negotiating",
+      "owner": "rizky",
+      "email": "contact5@example.com",
+      "phone": "+62 812 0000 0105",
+      "source": "合作伙伴",
+      "followup": "2026-11-06",
+      "created": "2026-10-05",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0006",
+      "name": "Ruang Karya",
+      "industry": "家居与设计",
+      "contact": "Nadia Putri",
+      "city": "Yogyakarta",
+      "amount": 32000000,
+      "status": "active",
+      "owner": "sarah",
+      "email": "contact6@example.com",
+      "phone": "+62 812 0000 0106",
+      "source": "官网咨询",
+      "followup": "2026-11-07",
+      "created": "2026-11-06",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0007",
+      "name": "Terang Edukasi",
+      "industry": "教育与培训",
+      "contact": "Fajar Hidayat",
+      "city": "Jakarta",
+      "amount": 94000000,
+      "status": "potential",
+      "owner": "maya",
+      "email": "contact7@example.com",
+      "phone": "+62 812 0000 0107",
+      "source": "线下活动",
+      "followup": "2026-11-08",
+      "created": "2026-06-07",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0008",
+      "name": "Padi Pangan Sejahtera",
+      "industry": "农业与食品",
+      "contact": "Rina Kusuma",
+      "city": "Medan",
+      "amount": 156000000,
+      "status": "active",
+      "owner": "rizky",
+      "email": "contact8@example.com",
+      "phone": "+62 812 0000 0108",
+      "source": "主动拓客",
+      "followup": "2026-11-09",
+      "created": "2026-07-08",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0009",
+      "name": "Meraki Hospitality",
+      "industry": "酒店与旅行",
+      "contact": "Dimas Saputra",
+      "city": "Bali",
+      "amount": 185000000,
+      "status": "negotiating",
+      "owner": "sarah",
+      "email": "contact9@example.com",
+      "phone": "+62 812 0000 0109",
+      "source": "合作伙伴",
+      "followup": "2026-11-10",
+      "created": "2026-08-09",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0010",
+      "name": "Langkah Sehat",
+      "industry": "健康与生活",
+      "contact": "Ayu Wulandari",
+      "city": "Bandung",
+      "amount": 73000000,
+      "status": "active",
+      "owner": "maya",
+      "email": "contact10@example.com",
+      "phone": "+62 812 0000 0110",
+      "source": "官网咨询",
+      "followup": "2026-11-11",
+      "created": "2026-09-10",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0011",
+      "name": "Alur Teknologi",
+      "industry": "科技与服务",
+      "contact": "Arif Maulana",
+      "city": "Surabaya",
+      "amount": 120000000,
+      "status": "potential",
+      "owner": "rizky",
+      "email": "contact11@example.com",
+      "phone": "+62 812 0000 0111",
+      "source": "线下活动",
+      "followup": "2026-11-12",
+      "created": "2026-10-11",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0012",
+      "name": "Taman Kreasi",
+      "industry": "家居与设计",
+      "contact": "Intan Permata",
+      "city": "Jakarta",
+      "amount": 42000000,
+      "status": "archived",
+      "owner": "sarah",
+      "email": "contact12@example.com",
+      "phone": "+62 812 0000 0112",
+      "source": "主动拓客",
+      "followup": "2026-11-13",
+      "created": "2026-11-12",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0013",
+      "name": "Cahaya Textile",
+      "industry": "零售与消费",
+      "contact": "Reza Firmansyah",
+      "city": "Bandung",
+      "amount": 98000000,
+      "status": "active",
+      "owner": "maya",
+      "email": "contact13@example.com",
+      "phone": "+62 812 0000 0113",
+      "source": "合作伙伴",
+      "followup": "2026-11-14",
+      "created": "2026-06-13",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0014",
+      "name": "Loka Mart",
+      "industry": "零售与消费",
+      "contact": "Fitri Handayani",
+      "city": "Medan",
+      "amount": 112000000,
+      "status": "negotiating",
+      "owner": "rizky",
+      "email": "contact14@example.com",
+      "phone": "+62 812 0000 0114",
+      "source": "官网咨询",
+      "followup": "2026-11-02",
+      "created": "2026-07-14",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0015",
+      "name": "Karsa Media",
+      "industry": "科技与服务",
+      "contact": "Yoga Prasetyo",
+      "city": "Jakarta",
+      "amount": 58000000,
+      "status": "potential",
+      "owner": "sarah",
+      "email": "contact15@example.com",
+      "phone": "+62 812 0000 0115",
+      "source": "线下活动",
+      "followup": "2026-11-03",
+      "created": "2026-08-15",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0016",
+      "name": "Sore Travel",
+      "industry": "酒店与旅行",
+      "contact": "Lina Marlina",
+      "city": "Bali",
+      "amount": 63000000,
+      "status": "active",
+      "owner": "maya",
+      "email": "contact16@example.com",
+      "phone": "+62 812 0000 0116",
+      "source": "主动拓客",
+      "followup": "2026-11-04",
+      "created": "2026-09-16",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0017",
+      "name": "Aruna Foodworks",
+      "industry": "农业与食品",
+      "contact": "Hendra Gunawan",
+      "city": "Surabaya",
+      "amount": 149000000,
+      "status": "negotiating",
+      "owner": "rizky",
+      "email": "contact17@example.com",
+      "phone": "+62 812 0000 0117",
+      "source": "合作伙伴",
+      "followup": "2026-11-05",
+      "created": "2026-10-17",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0018",
+      "name": "Mitra Belajar",
+      "industry": "教育与培训",
+      "contact": "Putri Amelia",
+      "city": "Yogyakarta",
+      "amount": 36000000,
+      "status": "active",
+      "owner": "sarah",
+      "email": "contact18@example.com",
+      "phone": "+62 812 0000 0118",
+      "source": "官网咨询",
+      "followup": "2026-11-06",
+      "created": "2026-11-18",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0019",
+      "name": "Benih Kreatif",
+      "industry": "科技与服务",
+      "contact": "Farhan Akbar",
+      "city": "Jakarta",
+      "amount": 77000000,
+      "status": "potential",
+      "owner": "maya",
+      "email": "contact19@example.com",
+      "phone": "+62 812 0000 0119",
+      "source": "线下活动",
+      "followup": "2026-11-07",
+      "created": "2026-06-19",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0020",
+      "name": "Jalur Express",
+      "industry": "物流与运输",
+      "contact": "Wulan Sari",
+      "city": "Surabaya",
+      "amount": 194000000,
+      "status": "active",
+      "owner": "rizky",
+      "email": "contact20@example.com",
+      "phone": "+62 812 0000 0120",
+      "source": "主动拓客",
+      "followup": "2026-11-08",
+      "created": "2026-07-20",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0021",
+      "name": "Daun Living",
+      "industry": "家居与设计",
+      "contact": "Bayu Setiawan",
+      "city": "Bali",
+      "amount": 89000000,
+      "status": "archived",
+      "owner": "sarah",
+      "email": "contact21@example.com",
+      "phone": "+62 812 0000 0121",
+      "source": "合作伙伴",
+      "followup": "2026-11-09",
+      "created": "2026-08-21",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0022",
+      "name": "Embun Wellness",
+      "industry": "健康与生活",
+      "contact": "Citra Dewi",
+      "city": "Bandung",
+      "amount": 51000000,
+      "status": "negotiating",
+      "owner": "maya",
+      "email": "contact22@example.com",
+      "phone": "+62 812 0000 0122",
+      "source": "官网咨询",
+      "followup": "2026-11-10",
+      "created": "2026-09-22",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0023",
+      "name": "Pelita Niaga",
+      "industry": "零售与消费",
+      "contact": "Taufik Hidayat",
+      "city": "Medan",
+      "amount": 103000000,
+      "status": "active",
+      "owner": "rizky",
+      "email": "contact23@example.com",
+      "phone": "+62 812 0000 0123",
+      "source": "线下活动",
+      "followup": "2026-11-11",
+      "created": "2026-10-23",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0024",
+      "name": "Ranting Studio",
+      "industry": "家居与设计",
+      "contact": "Nabila Zahra",
+      "city": "Yogyakarta",
+      "amount": 28000000,
+      "status": "potential",
+      "owner": "sarah",
+      "email": "contact24@example.com",
+      "phone": "+62 812 0000 0124",
+      "source": "主动拓客",
+      "followup": "2026-11-12",
+      "created": "2026-11-24",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0025",
+      "name": "Rasa Timur",
+      "industry": "餐饮与生活",
+      "contact": "Ilham Ramadhan",
+      "city": "Jakarta",
+      "amount": 76000000,
+      "status": "active",
+      "owner": "maya",
+      "email": "contact25@example.com",
+      "phone": "+62 812 0000 0125",
+      "source": "合作伙伴",
+      "followup": "2026-11-13",
+      "created": "2026-06-25",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0026",
+      "name": "Nadi Data",
+      "industry": "科技与服务",
+      "contact": "Vina Anggraini",
+      "city": "Bandung",
+      "amount": 164000000,
+      "status": "negotiating",
+      "owner": "rizky",
+      "email": "contact26@example.com",
+      "phone": "+62 812 0000 0126",
+      "source": "官网咨询",
+      "followup": "2026-11-14",
+      "created": "2026-07-26",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0027",
+      "name": "Jejak Wisata",
+      "industry": "酒店与旅行",
+      "contact": "Wahyu Nugroho",
+      "city": "Bali",
+      "amount": 92000000,
+      "status": "potential",
+      "owner": "sarah",
+      "email": "contact27@example.com",
+      "phone": "+62 812 0000 0127",
+      "source": "线下活动",
+      "followup": "2026-11-02",
+      "created": "2026-08-27",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0028",
+      "name": "Sawah Organik",
+      "industry": "农业与食品",
+      "contact": "Eka Saputri",
+      "city": "Yogyakarta",
+      "amount": 48000000,
+      "status": "active",
+      "owner": "maya",
+      "email": "contact28@example.com",
+      "phone": "+62 812 0000 0128",
+      "source": "主动拓客",
+      "followup": "2026-11-03",
+      "created": "2026-09-01",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0029",
+      "name": "Jendela Ilmu",
+      "industry": "教育与培训",
+      "contact": "Rafi Ananda",
+      "city": "Jakarta",
+      "amount": 65000000,
+      "status": "archived",
+      "owner": "rizky",
+      "email": "contact29@example.com",
+      "phone": "+62 812 0000 0129",
+      "source": "合作伙伴",
+      "followup": "2026-11-04",
+      "created": "2026-10-02",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0030",
+      "name": "Simpul Cargo",
+      "industry": "物流与运输",
+      "contact": "Melati Puspita",
+      "city": "Medan",
+      "amount": 131000000,
+      "status": "negotiating",
+      "owner": "sarah",
+      "email": "contact30@example.com",
+      "phone": "+62 812 0000 0130",
+      "source": "官网咨询",
+      "followup": "2026-11-05",
+      "created": "2026-11-03",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0031",
+      "name": "Pasar Pagi",
+      "industry": "零售与消费",
+      "contact": "Gilang Pratama",
+      "city": "Surabaya",
+      "amount": 57000000,
+      "status": "potential",
+      "owner": "maya",
+      "email": "contact31@example.com",
+      "phone": "+62 812 0000 0131",
+      "source": "线下活动",
+      "followup": "2026-11-06",
+      "created": "2026-06-04",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    },
+    {
+      "id": "CUS-0032",
+      "name": "Awan Softworks",
+      "industry": "科技与服务",
+      "contact": "Shinta Maharani",
+      "city": "Jakarta",
+      "amount": 208000000,
+      "status": "active",
+      "owner": "rizky",
+      "email": "contact32@example.com",
+      "phone": "+62 812 0000 0132",
+      "source": "主动拓客",
+      "followup": "2026-11-07",
+      "created": "2026-07-05",
+      "notes": "",
+      "events": [
+        {
+          "date": "2026-11-01",
+          "text": "从演示客户资料库建立档案。"
+        },
+        {
+          "date": "2026-11-02",
+          "text": "已补充需求与联系人信息。"
+        }
+      ]
+    }
+  ],
+  "deals": [
+    {
+      "id": "DL-01",
+      "name": "零售 CRM 年度方案",
+      "company": "Sagara Retail",
+      "amount": 128000000,
+      "owner": "maya",
+      "stage": 3
+    },
+    {
+      "id": "DL-02",
+      "name": "门店客户运营平台",
+      "company": "Kopi Senja Nusantara",
+      "amount": 45000000,
+      "owner": "rizky",
+      "stage": 1
+    },
+    {
+      "id": "DL-03",
+      "name": "企业数字化工作台",
+      "company": "Akar Digital Studio",
+      "amount": 86000000,
+      "owner": "sarah",
+      "stage": 3
+    },
+    {
+      "id": "DL-04",
+      "name": "物流客户协作系统",
+      "company": "Lintas Logistik",
+      "amount": 215000000,
+      "owner": "maya",
+      "stage": 0
+    },
+    {
+      "id": "DL-05",
+      "name": "会员营销管理系统",
+      "company": "Bumi Rasa Group",
+      "amount": 67500000,
+      "owner": "rizky",
+      "stage": 2
+    },
+    {
+      "id": "DL-06",
+      "name": "教育机构招生平台",
+      "company": "Terang Edukasi",
+      "amount": 94000000,
+      "owner": "maya",
+      "stage": 0
+    },
+    {
+      "id": "DL-07",
+      "name": "供应链客户服务平台",
+      "company": "Padi Pangan Sejahtera",
+      "amount": 156000000,
+      "owner": "rizky",
+      "stage": 2
+    },
+    {
+      "id": "DL-08",
+      "name": "酒店客户关系管理",
+      "company": "Meraki Hospitality",
+      "amount": 185000000,
+      "owner": "sarah",
+      "stage": 1
+    }
+  ]
+}

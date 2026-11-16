@@ -1,0 +1,60 @@
+import type { ThemeConfig } from "antd";
+export const palette = {
+  clay: "#b64c32",
+  forest: "#203c33",
+  background: "#f6f5f1",
+  border: "#e4e7e0",
+  text: "#25352f",
+  secondary: "#617069",
+};
+export const theme: ThemeConfig = {
+  token: {
+    colorPrimary: palette.clay,
+    colorSuccess: "#2c6a4b",
+    colorWarning: "#91600e",
+    colorError: "#b43c3c",
+    colorInfo: "#6a5686",
+    colorSuccessBg: "#eaf3ec",
+    colorSuccessBorder: "#c6decd",
+    colorWarningBg: "#fcf3df",
+    colorWarningBorder: "#e4d4ac",
+    colorErrorBg: "#fcecec",
+    colorErrorBorder: "#efc4c4",
+    colorInfoBg: "#f0ebf6",
+    colorInfoBorder: "#d7c9e6",
+    colorText: palette.text,
+    colorTextSecondary: palette.secondary,
+    colorBgLayout: palette.background,
+    colorBorder: "#cbd2ca",
+    colorBorderSecondary: palette.border,
+    borderRadius: 6,
+    fontSize: 14,
+    controlHeight: 32,
+    fontFamily:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif',
+  },
+  components: {
+    Button: { primaryShadow: "none" },
+    Menu: {
+      itemSelectedBg: "#e9f0eb",
+      itemSelectedColor: palette.forest,
+      itemBorderRadius: 6,
+      darkItemBg: palette.forest,
+      darkSubMenuItemBg: "#1c352d",
+      darkItemSelectedBg: "#365448",
+      darkItemSelectedColor: "#fff",
+    },
+    Card: { borderRadiusLG: 10 },
+    Table: {
+      headerBg: "#f8f9f6",
+      headerColor: "#617069",
+      cellPaddingBlock: 14,
+    },
+    Modal: { borderRadiusLG: 12 },
+    Layout: {
+      bodyBg: palette.background,
+      headerBg: "#fff",
+      siderBg: palette.forest,
+    },
+  },
+};
