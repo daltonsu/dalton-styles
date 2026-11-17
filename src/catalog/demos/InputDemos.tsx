@@ -30,13 +30,15 @@ import {
 import dayjs from "dayjs";
 import type { DefaultOptionType } from "antd/es/select";
 import { cities, options, Output, treeData, type DemoProps } from "./shared";
+import { usePreferences } from "../../app/Preferences";
 export default function InputDemos({ id, variant: v }: DemoProps) {
+  const { preset, appearance } = usePreferences();
   const { message } = App.useApp();
   const [text, setText] = useState("");
   const [chosen, setChosen] = useState<string[]>([]);
   const [enabled, setEnabled] = useState(true);
   const [number, setNumber] = useState(36);
-  const [color, setColor] = useState("#b64c32");
+  const [color, setColor] = useState<string>(preset.primary);
   const [checked, setChecked] = useState<string[]>(["Jakarta"]);
   const [form] = Form.useForm();
   const fieldStyle = { width: "100%", maxWidth: 340 };
@@ -60,7 +62,9 @@ export default function InputDemos({ id, variant: v }: DemoProps) {
                 aria-label="客户邮箱"
                 suffix="@example.com"
               />
-              <span style={{ color: "#b43c3c" }}>请输入有效的客户名称</span>
+              <span style={{ color: "var(--ui-error)" }}>
+                请输入有效的客户名称
+              </span>
             </>
           ) : (
             <Input disabled placeholder="不可编辑" />
@@ -395,11 +399,11 @@ export default function InputDemos({ id, variant: v }: DemoProps) {
                     {
                       label: "Dalton Styles",
                       colors: [
-                        "#b64c32",
-                        "#203c33",
-                        "#f6f5f1",
-                        "#2c6a4b",
-                        "#91600e",
+                        preset.primary,
+                        preset.navigation,
+                        appearance.layout,
+                        appearance.success,
+                        appearance.warning,
                       ],
                     },
                   ]
@@ -412,7 +416,7 @@ export default function InputDemos({ id, variant: v }: DemoProps) {
               height: 40,
               borderRadius: 6,
               background: color,
-              border: "1px solid #e4e7e0",
+              border: "1px solid var(--ui-border)",
             }}
           />
         </Space>

@@ -28,6 +28,7 @@ import {
   ZAxis,
 } from "recharts";
 import { downloadText, type DemoProps } from "./shared";
+import { usePreferences } from "../../app/Preferences";
 export const chartData = [
   { name: "6 月", 客户: 36, 合作: 18, 潜在: 12 },
   { name: "7 月", 客户: 52, 合作: 24, 潜在: 18 },
@@ -36,15 +37,18 @@ export const chartData = [
   { name: "10 月", 客户: 62, 合作: 38, 潜在: 18 },
   { name: "11 月", 客户: 88, 合作: 46, 潜在: 25 },
 ];
-const colors = [
-  "#b66a4d",
-  "#315e49",
-  "#b59b62",
-  "#8e789e",
-  "#9baf9c",
-  "#ccaaa0",
-];
 export default function ChartDemo({ id, variant: v }: DemoProps) {
+  const { preset, appearance } = usePreferences();
+  const colors = preset.chartColors;
+  const tooltipProps = {
+    contentStyle: {
+      borderRadius: 8,
+      background: appearance.elevated,
+      borderColor: appearance.border,
+      color: appearance.text,
+    },
+    labelStyle: { color: appearance.text },
+  };
   const [showTable, setShowTable] = useState(false);
   let responsive = true;
   const data =
@@ -77,15 +81,23 @@ export default function ChartDemo({ id, variant: v }: DemoProps) {
         }));
   const axes = (
     <>
-      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e4e7e0" />
+      <CartesianGrid
+        strokeDasharray="3 3"
+        vertical={false}
+        stroke={appearance.border}
+      />
       <XAxis
         dataKey="name"
-        tick={{ fontSize: 11 }}
+        tick={{ fontSize: 11, fill: appearance.secondary }}
         axisLine={false}
         tickLine={false}
       />
-      <YAxis tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
-      <Tooltip contentStyle={{ borderRadius: 8, borderColor: "#e4e7e0" }} />
+      <YAxis
+        tick={{ fontSize: 11, fill: appearance.secondary }}
+        axisLine={false}
+        tickLine={false}
+      />
+      <Tooltip {...tooltipProps} />
       <Legend iconType="circle" wrapperStyle={{ fontSize: 12 }} />
     </>
   );
@@ -120,7 +132,8 @@ export default function ChartDemo({ id, variant: v }: DemoProps) {
           <Area
             type="monotone"
             dataKey="客户"
-            fill="#f1dfd2"
+            fill={colors[0]}
+            fillOpacity={0.2}
             stroke={colors[0]}
             strokeWidth={2}
           />
@@ -128,7 +141,8 @@ export default function ChartDemo({ id, variant: v }: DemoProps) {
             <Area
               type="monotone"
               dataKey="合作"
-              fill="#d9e4d7"
+              fill={colors[1]}
+              fillOpacity={0.2}
               stroke={colors[1]}
               strokeWidth={2}
             />
@@ -164,15 +178,24 @@ export default function ChartDemo({ id, variant: v }: DemoProps) {
           layout="vertical"
           margin={{ left: 16, right: 24 }}
         >
-          <CartesianGrid horizontal={false} strokeDasharray="3 3" />
-          <XAxis type="number" tick={{ fontSize: 11 }} />
+          <CartesianGrid
+            horizontal={false}
+            strokeDasharray="3 3"
+            stroke={appearance.border}
+          />
+          <XAxis
+            type="number"
+            tick={{ fontSize: 11, fill: appearance.secondary }}
+            stroke={appearance.border}
+          />
           <YAxis
             dataKey="name"
             type="category"
-            tick={{ fontSize: 11 }}
+            tick={{ fontSize: 11, fill: appearance.secondary }}
+            stroke={appearance.border}
             width={70}
           />
-          <Tooltip />
+          <Tooltip {...tooltipProps} />
           <Bar dataKey="value" name="客户数量" radius={[0, 3, 3, 0]}>
             {data.map((d, i) => (
               <Cell key={d.name} fill={v === 1 ? colors[i] : colors[1]} />
@@ -197,7 +220,7 @@ export default function ChartDemo({ id, variant: v }: DemoProps) {
               <Cell key={d.name} fill={colors[i]} />
             ))}
           </Pie>
-          <Tooltip />
+          <Tooltip {...tooltipProps} />
           <Legend iconType="circle" wrapperStyle={{ fontSize: 11 }} />
         </PieChart>
       );
@@ -222,8 +245,11 @@ export default function ChartDemo({ id, variant: v }: DemoProps) {
             name: ["沟通", "交付", "增长", "响应", "服务", "协作"][i],
           }))}
         >
-          <PolarGrid />
-          <PolarAngleAxis dataKey="name" tick={{ fontSize: 12 }} />
+          <PolarGrid stroke={appearance.border} />
+          <PolarAngleAxis
+            dataKey="name"
+            tick={{ fontSize: 12, fill: appearance.secondary }}
+          />
           <Radar
             name="团队 A"
             dataKey="客户"
@@ -240,7 +266,7 @@ export default function ChartDemo({ id, variant: v }: DemoProps) {
               fillOpacity={0.2}
             />
           )}
-          <Tooltip />
+          <Tooltip {...tooltipProps} />
           <Legend />
         </RadarChart>
       );
@@ -248,14 +274,18 @@ export default function ChartDemo({ id, variant: v }: DemoProps) {
     case "funnel-chart":
       chart = (
         <FunnelChart>
-          <Tooltip />
+          <Tooltip {...tooltipProps} />
           <Funnel
             data={data.map((d, i) => ({ ...d, fill: colors[i] }))}
             dataKey="value"
             nameKey="name"
             isAnimationActive={false}
           >
-            <LabelList position="center" dataKey="name" fill="#fff" />
+            <LabelList
+              position="center"
+              dataKey="name"
+              fill={appearance.onAccent}
+            />
           </Funnel>
         </FunnelChart>
       );
@@ -295,8 +325,11 @@ export default function ChartDemo({ id, variant: v }: DemoProps) {
                 <button
                   aria-label={`${Math.floor(i / 7) + 1}组${(i % 7) + 1}日 ${n}次`}
                   style={{
-                    background: `rgba(49,94,73,${0.1 + n / 110})`,
-                    color: n > 45 ? "white" : "#203c33",
+                    background: `color-mix(in srgb, ${preset.primary} ${10 + n * 0.9}%, ${appearance.surface})`,
+                    color:
+                      n > (preset.mode === "dark" ? 42 : 65)
+                        ? appearance.onAccent
+                        : appearance.text,
                   }}
                 >
                   {n}
@@ -344,7 +377,13 @@ export default function ChartDemo({ id, variant: v }: DemoProps) {
   const keys = Object.keys(tableRows[0]);
   return (
     <div className="chart-demo">
-      <div style={{ height: 260, width: "100%", minWidth: 0 }}>
+      <div
+        style={{
+          height: id === "heatmap-chart" ? "auto" : 260,
+          width: "100%",
+          minWidth: 0,
+        }}
+      >
         {responsive ? (
           <ResponsiveContainer width="100%" height="100%" minWidth={0}>
             {chart}

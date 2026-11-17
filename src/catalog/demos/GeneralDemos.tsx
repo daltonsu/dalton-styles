@@ -303,7 +303,11 @@ export default function GeneralDemos({ id, variant: v }: DemoProps) {
           {v === 0 && (
             <Layout.Sider
               width="26%"
-              style={{ background: "#203c33", padding: 24, color: "white" }}
+              style={{
+                background: "var(--theme-navigation)",
+                padding: 24,
+                color: "white",
+              }}
             >
               导航
             </Layout.Sider>
@@ -332,7 +336,11 @@ export default function GeneralDemos({ id, variant: v }: DemoProps) {
     case "splitter":
       return (
         <Splitter
-          style={{ height: 180, border: "1px solid #e4e7e0", borderRadius: 6 }}
+          style={{
+            height: 180,
+            border: "1px solid var(--ui-border)",
+            borderRadius: 6,
+          }}
         >
           <Splitter.Panel
             defaultSize={v === 0 ? "35%" : "45%"}
@@ -538,7 +546,8 @@ export default function GeneralDemos({ id, variant: v }: DemoProps) {
                 style={{
                   minHeight: 180,
                   padding: 24,
-                  background: i % 2 ? "#f6f5f1" : "#edf2eb",
+                  background:
+                    i % 2 ? "var(--ui-layout)" : "var(--theme-selected)",
                 }}
               >
                 {x}
@@ -555,7 +564,7 @@ export default function GeneralDemos({ id, variant: v }: DemoProps) {
             height: 180,
             overflow: "auto",
             position: "relative",
-            border: "1px solid #e4e7e0",
+            border: "1px solid var(--ui-border)",
             padding: 12,
           }}
         >
@@ -581,7 +590,7 @@ export default function GeneralDemos({ id, variant: v }: DemoProps) {
           style={{
             height: 180,
             overflow: "auto",
-            border: "1px solid #e4e7e0",
+            border: "1px solid var(--ui-border)",
             padding: 16,
           }}
         >

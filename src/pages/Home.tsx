@@ -1,6 +1,6 @@
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { Brand } from "../components/Brand";
+import { usePreferences } from "../app/Preferences";
 const entries = [
   {
     to: "/components/button",
@@ -18,14 +18,9 @@ const entries = [
   },
 ];
 export default function Home() {
+  const { preset } = usePreferences();
   return (
     <div className="home">
-      <header className="home-header">
-        <Brand />
-        <span className="home-edition">
-          VOL. 01 <i /> REACT + ANT DESIGN
-        </span>
-      </header>
       <main className="home-main">
         <div className="home-intro">
           <span className="eyebrow">DALTON STYLES</span>
@@ -38,7 +33,7 @@ export default function Home() {
               <div className="entry-image">
                 <img
                   className="entry-thumbnail"
-                  src={`${import.meta.env.BASE_URL}previews/${entry.preview}.png`}
+                  src={`${import.meta.env.BASE_URL}previews/${entry.preview}${preset.id === "clay" ? "" : `-${preset.id}`}.png`}
                   alt={`${entry.title}页面预览`}
                   width={1280}
                   height={850}
@@ -61,11 +56,6 @@ export default function Home() {
           ))}
         </div>
       </main>
-      <footer className="home-footer">
-        <span>Dalton Styles</span>
-        <span>陶土橙 · 森林绿 · 暖白</span>
-        <span>DESIGNED TO WORK TOGETHER</span>
-      </footer>
     </div>
   );
 }

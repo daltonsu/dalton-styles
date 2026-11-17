@@ -24,7 +24,10 @@ import dayjs from "dayjs";
 import { useWorkspace } from "../domain/Store";
 import { demoDate, sources, stages, statuses, money } from "../domain/model";
 import { Metrics } from "../components/Metrics";
+import { usePreferences } from "../app/Preferences";
 export default function Overview() {
+  const { preset, appearance } = usePreferences();
+  const colors = preset.chartColors;
   const { data, setData } = useWorkspace();
   const { message } = App.useApp();
   const [range, setRange] = useState("6 个月");
@@ -91,38 +94,52 @@ export default function Overview() {
               <BarChart data={chart} barGap={5}>
                 <CartesianGrid
                   vertical={false}
-                  stroke="#e8ece2"
+                  stroke={appearance.border}
                   strokeDasharray="3 3"
                 />
                 <XAxis
                   dataKey="name"
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fontSize: 11, fill: "#87927e" }}
+                  tick={{ fontSize: 11, fill: appearance.secondary }}
                 />
                 <YAxis
                   allowDecimals={false}
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fontSize: 11, fill: "#87927e" }}
+                  tick={{ fontSize: 11, fill: appearance.secondary }}
                   width={25}
                 />
                 <Tooltip
-                  cursor={{ fill: "#f6f5f1" }}
-                  contentStyle={{ borderRadius: 8, borderColor: "#e4e7e0" }}
+                  cursor={{ fill: appearance.subtle }}
+                  contentStyle={{
+                    borderRadius: 8,
+                    background: appearance.elevated,
+                    color: appearance.text,
+                    borderColor: appearance.border,
+                  }}
+                  labelStyle={{ color: appearance.text }}
                 />
-                <Bar dataKey="新增客户" fill="#d7bca7" radius={[3, 3, 0, 0]} />
-                <Bar dataKey="合作客户" fill="#3b624b" radius={[3, 3, 0, 0]} />
+                <Bar
+                  dataKey="新增客户"
+                  fill={colors[0]}
+                  radius={[3, 3, 0, 0]}
+                />
+                <Bar
+                  dataKey="合作客户"
+                  fill={colors[1]}
+                  radius={[3, 3, 0, 0]}
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>
           <div className="chart-key">
             <span>
-              <i style={{ background: "#d7bca7" }} />
+              <i style={{ background: colors[0] }} />
               新增客户
             </span>
             <span>
-              <i style={{ background: "#3b624b" }} />
+              <i style={{ background: colors[1] }} />
               其中当前合作
             </span>
           </div>
@@ -150,9 +167,7 @@ export default function Overview() {
                   <Progress
                     percent={percent}
                     showInfo={false}
-                    strokeColor={
-                      ["#b66a4d", "#315e49", "#a28b52", "#8e789e"][i]
-                    }
+                    strokeColor={colors[i]}
                     size="small"
                   />
                 </div>
@@ -173,10 +188,7 @@ export default function Overview() {
           {due.length ? (
             due.slice(0, 4).map((c) => (
               <div className="followup-row" key={c.id}>
-                <Avatar
-                  shape="square"
-                  style={{ background: "#edf2e8", color: "#456148" }}
-                >
+                <Avatar shape="square" className="theme-avatar">
                   {c.name.slice(0, 1)}
                 </Avatar>
                 <div>
@@ -226,7 +238,7 @@ export default function Overview() {
                         ? (group.length / data.deals.length) * 100
                         : 0
                     }
-                    strokeColor={i === 3 ? "#315e49" : "#b66a4d"}
+                    strokeColor={colors[i]}
                     showInfo={false}
                     size="small"
                   />

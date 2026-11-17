@@ -243,7 +243,8 @@ export default function Customers() {
         <div className="customer-name-cell">
           <Avatar
             shape="square"
-            style={{ background: "#e9f0e4", color: "#456347", flexShrink: 0 }}
+            className="theme-avatar"
+            style={{ flexShrink: 0 }}
           >
             {c.name.slice(0, 2).toUpperCase()}
           </Avatar>
@@ -306,9 +307,8 @@ export default function Customers() {
               <Space size={7}>
                 <Avatar
                   size={23}
+                  className="theme-avatar theme-avatar-accent"
                   style={{
-                    background: "#f3e7de",
-                    color: "#a26043",
                     fontSize: 9,
                   }}
                 >
@@ -339,7 +339,7 @@ export default function Customers() {
                 style={{
                   color:
                     date < demoDate && c.status !== "archived"
-                      ? "#a45c3e"
+                      ? "var(--ui-error)"
                       : undefined,
                 }}
               >
@@ -762,11 +762,7 @@ export default function Customers() {
         {detail && (
           <>
             <div className="detail-heading">
-              <Avatar
-                size={56}
-                shape="square"
-                style={{ background: "#e9f0e4", color: "#456347" }}
-              >
+              <Avatar size={56} shape="square" className="theme-avatar">
                 {detail.name.slice(0, 2)}
               </Avatar>
               <div>

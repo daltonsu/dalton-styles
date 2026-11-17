@@ -1,12 +1,15 @@
-import { App, Button, Card, Select, Tag } from "antd";
+import { App, Button, Card, Select } from "antd";
 import { DownloadOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useWorkspace } from "../domain/Store";
 import { customersCsv, demoDate } from "../domain/model";
 import { downloadText } from "../catalog/demos/shared";
+import { usePreferences } from "../app/Preferences";
 export default function Settings() {
   const { data, setData, reset } = useWorkspace();
   const { modal, message } = App.useApp();
+  const { preset, preferences, reducedMotion, setSettingsOpen } =
+    usePreferences();
   return (
     <>
       <div className="page-title">
@@ -38,8 +41,13 @@ export default function Settings() {
         </nav>
         <div className="stack">
           <Card id="appearance" title="外观与显示">
-            <Setting label="视觉主题" note="陶土橙 × 森林绿 × 暖白">
-              <Tag color="success">Dalton · 默认主题</Tag>
+            <Setting
+              label="视觉主题"
+              note={`当前配色：${preset.name} · 控件圆角 ${preferences.radius}px`}
+            >
+              <Button onClick={() => setSettingsOpen(true)}>
+                调整全局外观
+              </Button>
             </Setting>
             <Setting label="表格密度" note="改变行间距，表格正文保持 14px。">
               <Select
@@ -58,8 +66,13 @@ export default function Settings() {
                 <Button>查看规范</Button>
               </Link>
             </Setting>
-            <Setting label="减少动画" note="自动遵循系统的“减少动态效果”偏好。">
-              <span className="muted">跟随系统</span>
+            <Setting
+              label="减少动画"
+              note="可在全局设置中调整，同时遵循系统偏好。"
+            >
+              <span className="muted">
+                {reducedMotion ? "已开启" : "跟随系统"}
+              </span>
             </Setting>
           </Card>
           <Card id="regional" title="地区与格式">

@@ -15,7 +15,6 @@ import {
 import {
   AppstoreOutlined,
   BellOutlined,
-  BookOutlined,
   BuildOutlined,
   DownOutlined,
   LeftOutlined,
@@ -95,21 +94,12 @@ function WorkspaceShell() {
       <div className="workspace-brand">
         <Brand caption="WORKSPACE" />
       </div>
-      <div className="workspace-picker">
-        <div>
-          <BuildOutlined aria-hidden="true" />
-        </div>
-        <span>
-          Dalton CRM<small>示例工作空间</small>
-        </span>
-      </div>
-      <span className="nav-label">WORKSPACE</span>
       <Menu
         theme="dark"
         mode="inline"
         inlineCollapsed={collapsed}
         selectedKeys={[section]}
-        items={links.slice(0, 3).map((x) => ({
+        items={links.map((x) => ({
           ...x,
           label: (
             <span>
@@ -122,40 +112,9 @@ function WorkspaceShell() {
         }))}
         onClick={(e) => navigate(`/examples/${e.key}`)}
       />
-      <span className="nav-label nav-label-second">DESIGN SYSTEM</span>
-      <Menu
-        theme="dark"
-        mode="inline"
-        inlineCollapsed={collapsed}
-        selectedKeys={[section]}
-        items={[
-          {
-            key: "standards",
-            label: "设计规范",
-            icon: <BookOutlined aria-hidden="true" />,
-          },
-          {
-            key: "components",
-            label: "组件库",
-            icon: <AppstoreOutlined aria-hidden="true" />,
-          },
-          links[3],
-        ]}
-        onClick={(e) =>
-          navigate(
-            e.key === "standards"
-              ? "/components/standards"
-              : e.key === "components"
-                ? "/components/button"
-                : "/examples/settings",
-          )
-        }
-      />
       <div className="workspace-user">
-        <Avatar style={{ background: "#d2dbb5", color: "#334b38" }}>DS</Avatar>
-        <span>
-          Dalton<small>工作空间管理员 · 演示</small>
-        </span>
+        <Avatar className="theme-avatar">DS</Avatar>
+        <span>Dalton</span>
         <Button
           type="text"
           className="workspace-collapse"
@@ -193,7 +152,7 @@ function WorkspaceShell() {
         styles={{
           body: {
             padding: 0,
-            background: "#203c33",
+            background: "var(--theme-navigation)",
             color: "white",
             display: "flex",
             flexDirection: "column",
@@ -205,6 +164,7 @@ function WorkspaceShell() {
       <div className="site-main">
         <SiteHeader
           section="页面样例"
+          brandCaption="WORKSPACE"
           current={current}
           onMenu={() => {
             setCollapsed(false);
@@ -213,6 +173,7 @@ function WorkspaceShell() {
         >
           <Button
             className="workspace-search"
+            aria-label="搜索工作空间"
             icon={<SearchOutlined aria-hidden="true" />}
             onClick={() => setSearchOpen(true)}
           >
@@ -227,7 +188,7 @@ function WorkspaceShell() {
               onClick={() => setNotifications(true)}
             />
           </Badge>
-          <Avatar size={30} style={{ background: "#f4e6dd", color: "#a1583c" }}>
+          <Avatar size={30} className="theme-avatar theme-avatar-accent">
             DS
           </Avatar>
         </SiteHeader>
@@ -264,10 +225,6 @@ function WorkspaceShell() {
             </Routes>
           </Suspense>
         </main>
-        <footer className="site-footer">
-          <span>Dalton Styles · 工作空间样例</span>
-          <span>React + Ant Design · 本地演示数据</span>
-        </footer>
       </div>
       <Modal
         title="搜索工作空间"

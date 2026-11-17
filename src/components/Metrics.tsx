@@ -6,7 +6,9 @@ import {
 } from "@ant-design/icons";
 import { demoDate, shortMoney } from "../domain/model";
 import { useWorkspace } from "../domain/Store";
+import { usePreferences } from "../app/Preferences";
 export function Metrics() {
+  const { preset } = usePreferences();
   const { data } = useWorkspace();
   const rows = data.customers;
   const active = rows.filter((c) => c.status === "active").length;
@@ -67,7 +69,7 @@ export function Metrics() {
               <path
                 d="M0 28 12 20 24 23 35 15 47 17 59 8 70 12 80 2"
                 fill="none"
-                stroke={i ? "#b66a4d" : "#54765a"}
+                stroke={preset.chartColors[i]}
                 strokeWidth="1.5"
               />
             </svg>

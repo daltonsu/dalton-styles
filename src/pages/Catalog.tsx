@@ -110,12 +110,6 @@ export default function Catalog() {
       <div className="catalog-brand">
         <Brand caption="COMPONENTS" />
       </div>
-      <div className="catalog-links">
-        <Link to="/examples/overview">
-          后台样例 <ArrowRightOutlined aria-hidden="true" />
-        </Link>
-        <Link to="/components/standards">设计规范</Link>
-      </div>
       <Input
         className="catalog-search"
         prefix={<SearchOutlined aria-hidden="true" />}
@@ -172,9 +166,6 @@ export default function Catalog() {
         )}
       </div>
       <div className="sidebar-bottom">
-        <span>
-          Dalton Styles <small>87 个组件</small>
-        </span>
         <Button
           type="text"
           className="collapse-catalog"
@@ -209,6 +200,7 @@ export default function Catalog() {
       <div className="site-main">
         <SiteHeader
           section="组件库"
+          brandCaption="COMPONENTS"
           current={
             id === "standards" ? "设计规范" : (component?.label ?? "未找到")
           }
@@ -236,15 +228,6 @@ export default function Catalog() {
                     <small>{component.en}</small>
                   </h1>
                   <p>{component.description}</p>
-                </div>
-                <div className="page-badges">
-                  <Tag>{component.examples.length} 个示例</Tag>
-                  <Tag color="default">
-                    React /{" "}
-                    {component.group === "数据可视化"
-                      ? "Recharts"
-                      : "Ant Design"}
-                  </Tag>
                 </div>
               </div>
               <div className="catalog-examples">
@@ -376,10 +359,6 @@ export default function Catalog() {
             </>
           )}
         </main>
-        <footer className="site-footer">
-          <span>Dalton Styles · 组件标准</span>
-          <span>React + Ant Design · 本地交互演示</span>
-        </footer>
       </div>
     </div>
   );

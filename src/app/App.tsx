@@ -1,42 +1,59 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, type CSSProperties } from "react";
 import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Result, Spin } from "antd";
 import Home from "../pages/Home";
+import { GlobalSettings } from "../components/GlobalSettings";
+import { usePreferences } from "./Preferences";
+import { HomeHeader } from "../components/HomeHeader";
 const Catalog = lazy(() => import("../pages/Catalog"));
 const Workspace = lazy(() => import("../pages/Workspace"));
 export default function App() {
   const { pathname } = useLocation();
+  const isHome = pathname === "/";
+  const { settingsOpen, pageScrollOffset } = usePreferences();
   useEffect(() => {
     window.scrollTo(0, 0);
     if (pathname === "/") document.title = "Dalton Styles";
   }, [pathname]);
   return (
-    <Suspense
-      fallback={
-        <div className="page-loading">
-          <Spin />
-        </div>
-      }
-    >
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/components"
-          element={<Navigate to="/components/button" replace />}
-        />
-        <Route path="/components/:id" element={<Catalog />} />
-        <Route path="/examples/*" element={<Workspace />} />
-        <Route
-          path="*"
-          element={
-            <Result
-              status="404"
-              title="页面不存在"
-              extra={<Link to="/">返回首页</Link>}
-            />
+    <>
+      <GlobalSettings />
+      {isHome && <HomeHeader />}
+      <div
+        className={`app-page ${isHome ? "app-page-home" : ""} ${settingsOpen ? "app-page-open" : ""}`}
+        inert={settingsOpen}
+        style={
+          { "--page-scroll-offset": `${pageScrollOffset}px` } as CSSProperties
+        }
+      >
+        <Suspense
+          fallback={
+            <div className="page-loading">
+              <Spin />
+            </div>
           }
-        />
-      </Routes>
-    </Suspense>
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/components"
+              element={<Navigate to="/components/button" replace />}
+            />
+            <Route path="/components/:id" element={<Catalog />} />
+            <Route path="/examples/*" element={<Workspace />} />
+            <Route
+              path="*"
+              element={
+                <Result
+                  status="404"
+                  title="页面不存在"
+                  extra={<Link to="/">返回首页</Link>}
+                />
+              }
+            />
+          </Routes>
+        </Suspense>
+      </div>
+    </>
   );
 }

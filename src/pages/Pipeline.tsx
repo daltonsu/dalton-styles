@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Alert, App, Avatar, Badge, Button, Empty, Select, Tag } from "antd";
 import { useWorkspace } from "../domain/Store";
 import { money, owners, stages } from "../domain/model";
+import { usePreferences } from "../app/Preferences";
 export default function Pipeline() {
+  const { preset } = usePreferences();
   const { data, setData } = useWorkspace();
   const { message } = App.useApp();
   const [dragged, setDragged] = useState<string | null>(null);
@@ -60,9 +62,7 @@ export default function Pipeline() {
                 <div>
                   <span
                     style={{
-                      background: ["#a39060", "#9580a3", "#b66a4d", "#3b694b"][
-                        i
-                      ],
+                      background: preset.chartColors[i],
                     }}
                   />
                   {stage}
@@ -100,9 +100,8 @@ export default function Pipeline() {
                     <footer>
                       <Avatar
                         size={28}
+                        className="theme-avatar"
                         style={{
-                          background: "#e9efdf",
-                          color: "#496544",
                           fontSize: 10,
                         }}
                       >

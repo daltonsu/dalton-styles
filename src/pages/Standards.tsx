@@ -1,18 +1,21 @@
-import { App, Button, Card, Table } from "antd";
+import { App, Button, Card, Table, theme } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
-import { theme } from "../app/theme";
+import { usePreferences } from "../app/Preferences";
 import { downloadText } from "../catalog/demos/shared";
-const swatches = [
-  ["品牌主色", "#b64c32", "主要操作与强调"],
-  ["森林绿", "#203c33", "导航与结构"],
-  ["暖白", "#f6f5f1", "页面背景"],
-  ["主文字", "#25352f", "正文与标题"],
-  ["次文字", "#617069", "辅助信息"],
-  ["成功", "#2c6a4b", "完成与合作"],
-  ["警告", "#91600e", "待处理状态"],
-  ["危险", "#b43c3c", "失败与删除"],
-];
 export default function Standards() {
+  const { preset, appearance, activeTheme, preferences, reducedMotion } =
+    usePreferences();
+  const { token } = theme.useToken();
+  const swatches = [
+    ["品牌主色", token.colorPrimary, "主要操作与强调"],
+    ["导航色", preset.navigation, "导航与结构"],
+    [preset.mode === "dark" ? "深色" : "暖白", appearance.layout, "页面背景"],
+    ["主文字", appearance.text, "正文与标题"],
+    ["次文字", appearance.secondary, "辅助信息"],
+    ["成功", appearance.success, "完成与合作"],
+    ["警告", appearance.warning, "待处理状态"],
+    ["危险", appearance.error, "失败与删除"],
+  ];
   const { message } = App.useApp();
   return (
     <>
@@ -29,7 +32,11 @@ export default function Standards() {
           onClick={() =>
             downloadText(
               "dalton-theme.json",
-              JSON.stringify(theme, null, 2),
+              JSON.stringify(
+                { token, components: activeTheme.components },
+                null,
+                2,
+              ),
               "application/json",
             )
           }
@@ -42,7 +49,7 @@ export default function Standards() {
         {swatches.map(([name, color, usage]) => (
           <button
             className="palette-card"
-            key={color}
+            key={name}
             onClick={() =>
               navigator.clipboard
                 .writeText(color)
@@ -80,8 +87,8 @@ export default function Standards() {
               [32, "默认控件"],
               [24, "小号控件"],
               [40, "大号控件"],
-              [6, "控件圆角"],
-              [10, "卡片圆角"],
+              [preferences.radius, "控件圆角"],
+              [preferences.radius + 4, "卡片圆角"],
               [24, "页面间距"],
             ].map(([n, label]) => (
               <div key={label}>
@@ -121,7 +128,12 @@ export default function Standards() {
           },
           { name: "反馈", rule: "真实完成后再显示成功；请求失败提供重试。" },
           { name: "小屏", rule: "侧栏收进抽屉，卡片单列，宽表格局部滚动。" },
-          { name: "动效", rule: "遵循系统减少动态效果的设置。" },
+          {
+            name: "动效",
+            rule: reducedMotion
+              ? "当前已减少动态效果。"
+              : "遵循系统减少动态效果的设置。",
+          },
         ]}
       />
     </>

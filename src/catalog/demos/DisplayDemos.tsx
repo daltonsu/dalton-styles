@@ -80,7 +80,10 @@ export default function DisplayDemos({ id, variant: v }: DemoProps) {
             <div className="demo-list-item" key={row.key}>
               {v === 0 && (
                 <Avatar
-                  style={{ background: "#e9f0eb", color: "#203c33" }}
+                  style={{
+                    background: "var(--theme-selected)",
+                    color: "var(--theme-ink)",
+                  }}
                   icon={<UserOutlined aria-hidden="true" />}
                 />
               )}
@@ -116,7 +119,9 @@ export default function DisplayDemos({ id, variant: v }: DemoProps) {
             <Card
               hoverable
               onClick={() => setSelected(!selected)}
-              style={{ borderColor: selected ? "#b64c32" : undefined }}
+              style={{
+                borderColor: selected ? "var(--theme-primary)" : undefined,
+              }}
             >
               <Space>
                 <Checkbox
@@ -254,7 +259,7 @@ export default function DisplayDemos({ id, variant: v }: DemoProps) {
               <Card
                 title="无边框卡片"
                 variant="borderless"
-                style={{ background: "#edf2eb" }}
+                style={{ background: "var(--theme-selected)" }}
               >
                 轻量内容分组
               </Card>
@@ -318,8 +323,14 @@ export default function DisplayDemos({ id, variant: v }: DemoProps) {
       return v === 0 ? (
         <Space wrap>
           <Avatar icon={<UserOutlined aria-hidden="true" />} />
-          <Avatar style={{ background: "#203c33" }}>MP</Avatar>
-          <Avatar shape="square" style={{ background: "#b64c32" }}>
+          <Avatar style={{ background: "var(--theme-navigation)" }}>MP</Avatar>
+          <Avatar
+            shape="square"
+            style={{
+              background: "var(--theme-primary)",
+              color: "var(--ui-on-accent)",
+            }}
+          >
             DS
           </Avatar>
           <Avatar size={48}>AP</Avatar>
@@ -329,7 +340,14 @@ export default function DisplayDemos({ id, variant: v }: DemoProps) {
           {["MP", "RA", "SW", "DS", "AP"].map((x, i) => (
             <Avatar
               key={x}
-              style={{ background: ["#b64c32", "#203c33", "#6a5686"][i % 3] }}
+              style={{
+                background: [
+                  "var(--theme-primary)",
+                  "var(--theme-navigation)",
+                  "#6a5686",
+                ][i % 3],
+                color: i % 3 === 0 ? "var(--ui-on-accent)" : undefined,
+              }}
             >
               {x}
             </Avatar>
@@ -472,7 +490,14 @@ export default function DisplayDemos({ id, variant: v }: DemoProps) {
               ) : (
                 <div
                   className="carousel-slide"
-                  style={{ background: ["#203c33", "#b64c32", "#6a5686"][i] }}
+                  style={{
+                    background: [
+                      "var(--theme-navigation)",
+                      "var(--theme-primary)",
+                      "#6a5686",
+                    ][i],
+                    color: i === 1 ? "var(--ui-on-accent)" : undefined,
+                  }}
                 >
                   内容 {i + 1}
                 </div>
@@ -539,7 +564,13 @@ export default function DisplayDemos({ id, variant: v }: DemoProps) {
             />
           )}
           <Watermark content={text || "Dalton Styles"}>
-            <div style={{ height: 180, background: "#fafbf8", padding: 24 }}>
+            <div
+              style={{
+                height: 180,
+                background: "var(--ui-subtle)",
+                padding: 24,
+              }}
+            >
               客户资料 · 内部演示
             </div>
           </Watermark>
@@ -550,7 +581,12 @@ export default function DisplayDemos({ id, variant: v }: DemoProps) {
         <div className="stack">
           {comments.map((c, i) => (
             <div className="demo-list-item" key={i}>
-              <Avatar style={{ background: "#e9f0eb", color: "#203c33" }}>
+              <Avatar
+                style={{
+                  background: "var(--theme-selected)",
+                  color: "var(--theme-ink)",
+                }}
+              >
                 MP
               </Avatar>
               <div>

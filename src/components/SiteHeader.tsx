@@ -1,13 +1,16 @@
 import { Button } from "antd";
 import { ArrowLeftOutlined, MenuOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { Brand } from "./Brand";
 export function SiteHeader({
   section,
+  brandCaption,
   current,
   onMenu,
   children,
 }: {
   section: string;
+  brandCaption: string;
   current: string;
   onMenu: () => void;
   children?: React.ReactNode;
@@ -15,6 +18,9 @@ export function SiteHeader({
   return (
     <header className="site-header">
       <div className="header-left">
+        <div className="mobile-header-brand">
+          <Brand caption={brandCaption} />
+        </div>
         <Button
           className="mobile-nav-toggle"
           type="text"
@@ -31,13 +37,7 @@ export function SiteHeader({
         <span className="crumb-divider">/</span>
         <span className="header-current">{current}</span>
       </div>
-      <div className="header-right">
-        {children ?? (
-          <span className="header-tech">
-            <span className="status-dot" /> React + Ant Design
-          </span>
-        )}
-      </div>
+      {children && <div className="header-right">{children}</div>}
     </header>
   );
 }
