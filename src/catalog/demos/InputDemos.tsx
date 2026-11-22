@@ -31,6 +31,25 @@ import dayjs from "dayjs";
 import type { DefaultOptionType } from "antd/es/select";
 import { cities, options, Output, treeData, type DemoProps } from "./shared";
 import { usePreferences } from "../../app/Preferences";
+import {
+  DateTimeRangePicker,
+  type DateTimeRange,
+} from "../../components/DateTimeRangePicker";
+
+function DateTimeRangeDemo() {
+  const [range, setRange] = useState<DateTimeRange>({ from: "", to: "" });
+  const { preferences } = usePreferences();
+  return (
+    <DateTimeRangePicker
+      value={range}
+      onChange={setRange}
+      defaultOpen
+      dateFormat={preferences.dateFormat}
+      weekStartsOn={preferences.weekStartsOn}
+    />
+  );
+}
+
 export default function InputDemos({ id, variant: v }: DemoProps) {
   const { preset, appearance } = usePreferences();
   const { message } = App.useApp();
@@ -332,6 +351,26 @@ export default function InputDemos({ id, variant: v }: DemoProps) {
         </>
       );
     case "date-picker":
+      if (v >= 3)
+        return (
+          <DatePicker.RangePicker
+            style={{ maxWidth: "100%" }}
+            presets={
+              v === 4
+                ? [
+                    {
+                      label: "最近 7 天",
+                      value: [dayjs().subtract(6, "day"), dayjs()],
+                    },
+                    {
+                      label: "本月",
+                      value: [dayjs().startOf("month"), dayjs().endOf("month")],
+                    },
+                  ]
+                : undefined
+            }
+          />
+        );
       return (
         <Space wrap>
           <DatePicker
@@ -350,26 +389,8 @@ export default function InputDemos({ id, variant: v }: DemoProps) {
           <DatePicker aria-label="禁用日期" disabled />
         </Space>
       );
-    case "range-picker":
-      return (
-        <DatePicker.RangePicker
-          style={{ maxWidth: "100%" }}
-          presets={
-            v === 1
-              ? [
-                  {
-                    label: "最近 7 天",
-                    value: [dayjs().subtract(6, "day"), dayjs()],
-                  },
-                  {
-                    label: "本月",
-                    value: [dayjs().startOf("month"), dayjs().endOf("month")],
-                  },
-                ]
-              : undefined
-          }
-        />
-      );
+    case "date-time-picker":
+      return <DateTimeRangeDemo />;
     case "time-picker":
       return (
         <Space wrap>

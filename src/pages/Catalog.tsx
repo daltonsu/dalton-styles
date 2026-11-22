@@ -1,15 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import {
-  App,
-  Button,
-  Drawer,
-  Empty,
-  Input,
-  Menu,
-  Result,
-  Table,
-  Tag,
-} from "antd";
+import { App, Button, Drawer, Empty, Input, Menu, Result } from "antd";
 import {
   ArrowLeftOutlined,
   ArrowRightOutlined,
@@ -31,12 +21,7 @@ import { Brand } from "../components/Brand";
 import { SiteHeader } from "../components/SiteHeader";
 import manifest from "../catalog/manifest.json";
 import { ComponentDemo } from "../catalog/ComponentDemo";
-import { componentNames, apiFor, hasNativeApi } from "../catalog/api";
 import Standards from "./Standards";
-const sources = import.meta.glob("../catalog/demos/*.tsx", {
-  query: "?raw",
-  import: "default",
-});
 const groupNames = [...new Set(manifest.map((c) => c.group))];
 const groupIcons = [
   <AppstoreOutlined aria-hidden="true" />,
@@ -46,17 +31,6 @@ const groupIcons = [
   <BellOutlined aria-hidden="true" />,
   <BarChartOutlined aria-hidden="true" />,
 ];
-function sourceFile(group: string) {
-  return group === "数据录入"
-    ? "InputDemos"
-    : group === "数据展示"
-      ? "DisplayDemos"
-      : group === "反馈"
-        ? "FeedbackDemos"
-        : group === "数据可视化"
-          ? "ChartDemo"
-          : "GeneralDemos";
-}
 export default function Catalog() {
   const { id = "button" } = useParams();
   const navigate = useNavigate();
@@ -65,8 +39,6 @@ export default function Catalog() {
   const [mobile, setMobile] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
-  const [source, setSource] = useState("");
-  const [sourceOpen, setSourceOpen] = useState(false);
   const component = manifest.find((c) => c.id === id);
   const index = manifest.findIndex((c) => c.id === id);
   const filtered = useMemo(
@@ -80,8 +52,6 @@ export default function Catalog() {
   );
   useEffect(() => {
     if (component) setOpenKeys([component.group]);
-    setSourceOpen(false);
-    setSource("");
     document.title = `${id === "standards" ? "设计规范" : (component?.label ?? "未找到组件")} · Dalton Styles`;
     setMobile(false);
   }, [id, component]);
@@ -92,18 +62,6 @@ export default function Catalog() {
     } catch {
       message.error("复制失败，请选中代码手动复制");
     }
-  };
-  const showSource = async () => {
-    if (!component) return;
-    if (!source)
-      setSource(
-        String(
-          await sources[
-            `../catalog/demos/${sourceFile(component.group)}.tsx`
-          ](),
-        ),
-      );
-    setSourceOpen(!sourceOpen);
   };
   const sidebar = (
     <>
@@ -272,72 +230,6 @@ export default function Catalog() {
                   </section>
                 ))}
               </div>
-              <section className="usage-section">
-                <h2 className="section-title">使用方法</h2>
-                <div className="usage-card">
-                  <div className="usage-title">
-                    <CodeOutlined aria-hidden="true" />
-                    <strong>
-                      {componentNames[id] ?? "Recharts / React 图表"}
-                    </strong>
-                    <Tag color="success">React 实现</Tag>
-                  </div>
-                  <p>
-                    所有演示使用本项目统一主题。上方代码调用项目内的示例组件；跨项目复用时，将对应实现与共享依赖一并迁移，并由业务传入数据和事件。
-                  </p>
-                  <Button
-                    type="link"
-                    style={{ paddingLeft: 0 }}
-                    onClick={showSource}
-                  >
-                    {sourceOpen ? "收起" : "查看"}完整 React 实现{" "}
-                    <DownOutlined aria-hidden="true" />
-                  </Button>
-                  {sourceOpen && (
-                    <div className="source-view">
-                      <div className="code-toolbar">
-                        <small>
-                          src/catalog/demos/{sourceFile(component.group)}.tsx ·
-                          共享依赖见 shared.tsx
-                        </small>
-                        <Button
-                          icon={<CopyOutlined aria-hidden="true" />}
-                          size="small"
-                          onClick={() => copy(source)}
-                        >
-                          复制源码
-                        </Button>
-                      </div>
-                      <pre>
-                        <code>{source}</code>
-                      </pre>
-                    </div>
-                  )}
-                </div>
-                {apiFor(id).length > 0 && (
-                  <>
-                    <h2 className="section-title">
-                      {hasNativeApi(id) ? "常用参数" : "示例入口参数"}
-                    </h2>
-                    <Table
-                      size="middle"
-                      pagination={false}
-                      rowKey={(r) => r[0]}
-                      dataSource={apiFor(id)}
-                      columns={[
-                        {
-                          title: "参数",
-                          dataIndex: 0,
-                          render: (x) => <code className="api-name">{x}</code>,
-                        },
-                        { title: "类型", dataIndex: 1 },
-                        { title: "说明", dataIndex: 2 },
-                      ]}
-                      scroll={{ x: 500 }}
-                    />
-                  </>
-                )}
-              </section>
               <nav className="component-pagination" aria-label="相邻组件">
                 {index > 0 ? (
                   <Link to={`/components/${manifest[index - 1].id}`}>

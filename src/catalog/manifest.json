@@ -654,7 +654,7 @@
     "label": "日期选择器",
     "en": "DatePicker",
     "group": "数据录入",
-    "description": "整块控件打开日历，支持月份切换与范围限制。",
+    "description": "整块控件打开日历，支持单个日期、月份、起止日期及快捷范围选择。",
     "examples": [
       {
         "title": "日期 / 空值",
@@ -667,16 +667,7 @@
       {
         "title": "月份选择",
         "wide": false
-      }
-    ]
-  },
-  {
-    "id": "range-picker",
-    "label": "日期范围",
-    "en": "RangePicker",
-    "group": "数据录入",
-    "description": "成对选择日期并限制结束日期不早于开始。",
-    "examples": [
+      },
       {
         "title": "起止日期",
         "wide": false
@@ -705,6 +696,19 @@
       {
         "title": "时段 / 15 分钟间隔",
         "wide": false
+      }
+    ]
+  },
+  {
+    "id": "date-time-picker",
+    "label": "日期时间选择器",
+    "en": "DateTimeRangePicker",
+    "group": "数据录入",
+    "description": "依次选择开始日期、开始时间、结束日期和结束时间，点击确定按钮回填，可通过输入框右侧叉号清空。范围包含开始时间，不包含结束时间。",
+    "examples": [
+      {
+        "title": "日期时间范围",
+        "wide": true
       }
     ]
   },

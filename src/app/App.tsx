@@ -7,6 +7,7 @@ import { usePreferences } from "./Preferences";
 import { HomeHeader } from "../components/HomeHeader";
 const Catalog = lazy(() => import("../pages/Catalog"));
 const Workspace = lazy(() => import("../pages/Workspace"));
+const ZeroThree = lazy(() => import("../pages/ZeroThree"));
 export default function App() {
   const { pathname } = useLocation();
   const isHome = pathname === "/";
@@ -39,7 +40,12 @@ export default function App() {
               path="/components"
               element={<Navigate to="/components/button" replace />}
             />
+            <Route
+              path="/components/range-picker"
+              element={<Navigate to="/components/date-picker" replace />}
+            />
             <Route path="/components/:id" element={<Catalog />} />
+            <Route path="/examples/03/:section?" element={<ZeroThree />} />
             <Route path="/examples/*" element={<Workspace />} />
             <Route
               path="*"

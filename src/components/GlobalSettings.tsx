@@ -6,6 +6,7 @@ import {
   Progress,
   Radio,
   Segmented,
+  Select,
   Switch,
   Tag,
 } from "antd";
@@ -24,6 +25,19 @@ import {
   themePresets,
   type CornerRadius,
 } from "../app/theme";
+import {
+  dateFormats,
+  formatDate,
+  weekdays,
+  weekStartOptions,
+  type DateFormat,
+} from "../domain/date";
+
+const dateOrderLabels: Record<DateFormat, string> = {
+  "YYYY/MM/DD": "年/月/日",
+  "MM/DD/YYYY": "月/日/年",
+  "DD/MM/YYYY": "日/月/年",
+};
 
 export function GlobalSettings() {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -68,7 +82,14 @@ export function GlobalSettings() {
         onClose={close}
         focusable={{ trap: true, focusTriggerAfterClose: false }}
         afterOpenChange={(open) => {
-          if (open) closeButtonRef.current?.focus({ preventScroll: true });
+          const button = closeButtonRef.current;
+          if (
+            open &&
+            button &&
+            !button.closest('[role="dialog"]')?.contains(document.activeElement)
+          ) {
+            button.focus({ preventScroll: true });
+          }
         }}
         onKeyDown={(event) => {
           if (event.key !== "Tab") return;
@@ -225,6 +246,40 @@ export function GlobalSettings() {
                     updatePreferences({ reduceMotion })
                   }
                 />
+              </section>
+              <section
+                className="global-setting-section"
+                aria-labelledby="date-heading"
+              >
+                <div className="global-setting-heading">
+                  <h2 id="date-heading">日期与日历</h2>
+                </div>
+                <div className="global-date-settings">
+                  <label htmlFor="week-start-setting">每周起始日</label>
+                  <Select
+                    id="week-start-setting"
+                    value={preferences.weekStartsOn}
+                    onChange={(weekStartsOn) =>
+                      updatePreferences({ weekStartsOn })
+                    }
+                    options={weekStartOptions.map((day) => ({
+                      value: day,
+                      label: weekdays[day],
+                    }))}
+                    virtual={false}
+                  />
+                  <label htmlFor="date-format-setting">日期显示顺序</label>
+                  <Select<DateFormat>
+                    id="date-format-setting"
+                    value={preferences.dateFormat}
+                    onChange={(dateFormat) => updatePreferences({ dateFormat })}
+                    options={dateFormats.map((format) => ({
+                      value: format,
+                      label: `${dateOrderLabels[format]} · ${formatDate("2026-11-19", format)}`,
+                    }))}
+                    virtual={false}
+                  />
+                </div>
               </section>
             </div>
             <aside

@@ -8,7 +8,7 @@ import {
   App,
   Empty,
 } from "antd";
-import { ArrowRightOutlined, CalendarOutlined } from "@ant-design/icons";
+import { ArrowRightOutlined } from "@ant-design/icons";
 import {
   BarChart,
   Bar,
@@ -25,8 +25,13 @@ import { useWorkspace } from "../domain/Store";
 import { demoDate, sources, stages, statuses, money } from "../domain/model";
 import { Metrics } from "../components/Metrics";
 import { usePreferences } from "../app/Preferences";
+import { formatDate } from "../domain/date";
 export default function Overview() {
-  const { preset, appearance } = usePreferences();
+  const {
+    preset,
+    appearance,
+    preferences: { dateFormat },
+  } = usePreferences();
   const colors = preset.chartColors;
   const { data, setData } = useWorkspace();
   const { message } = App.useApp();
@@ -65,16 +70,6 @@ export default function Overview() {
   };
   return (
     <>
-      <div className="page-title">
-        <div>
-          <span className="eyebrow">YOUR WORKSPACE, AT A GLANCE</span>
-          <h1>经营概览</h1>
-          <p>每一次跟进，都让合作更近一步。</p>
-        </div>
-        <span className="demo-date">
-          <CalendarOutlined aria-hidden="true" /> {demoDate} · 演示基准日
-        </span>
-      </div>
       <Metrics />
       <div className="overview-grid">
         <Card
@@ -88,7 +83,7 @@ export default function Overview() {
             />
           }
         >
-          <p className="card-note">按建档月份统计 · 本地演示数据</p>
+          <p className="card-note">按建档月份统计</p>
           <div style={{ height: 260, minWidth: 0 }}>
             <ResponsiveContainer width="100%" height="100%" minWidth={0}>
               <BarChart data={chart} barGap={5}>
@@ -196,7 +191,7 @@ export default function Overview() {
                     {c.name}
                   </Link>
                   <small>
-                    联系 {c.contact} · {c.followup}
+                    联系 {c.contact} · {formatDate(c.followup, dateFormat)}
                   </small>
                 </div>
                 <Button size="small" onClick={() => follow(c.id)}>

@@ -1,4 +1,5 @@
 import { theme as antTheme, type ThemeConfig } from "antd";
+import { dateFormats, weekStartOptions, type DateFormat } from "../domain/date";
 export const themePresets = [
   {
     id: "clay",
@@ -213,12 +214,16 @@ export interface Preferences {
   themeId: ThemeId;
   radius: CornerRadius;
   reduceMotion: boolean;
+  weekStartsOn: (typeof weekStartOptions)[number];
+  dateFormat: DateFormat;
 }
 export const preferencesKey = "dalton-styles:preferences:v1";
 export const defaultPreferences: Preferences = {
   themeId: "clay",
   radius: 6,
   reduceMotion: false,
+  weekStartsOn: 1,
+  dateFormat: "DD/MM/YYYY",
 };
 export function normalizePreferences(value: unknown): Preferences {
   const saved =
@@ -231,6 +236,12 @@ export function normalizePreferences(value: unknown): Preferences {
       ? saved.radius!
       : defaultPreferences.radius,
     reduceMotion: saved.reduceMotion === true,
+    weekStartsOn:
+      weekStartOptions.find((day) => day === saved.weekStartsOn) ??
+      defaultPreferences.weekStartsOn,
+    dateFormat:
+      dateFormats.find((format) => format === saved.dateFormat) ??
+      defaultPreferences.dateFormat,
   };
 }
 export const palette = {

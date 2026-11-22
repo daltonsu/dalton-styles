@@ -34,8 +34,8 @@ export const componentNames: Record<string, string> = {
   slider: "Slider",
   rate: "Rate",
   "date-picker": "DatePicker",
-  "range-picker": "DatePicker.RangePicker",
   "time-picker": "TimePicker",
+  "date-time-picker": "DateTimeRangePicker",
   "color-picker": "ColorPicker",
   upload: "Upload",
   transfer: "Transfer",
@@ -160,6 +160,18 @@ Object.assign(api, {
     ["onChange", "function", "日期变更回调"],
     ["disabledDate", "function", "限制可选日期"],
     ["picker", "date | month | year", "日期选择模式"],
+  ],
+  "date-time-picker": [
+    [
+      "value",
+      "{ from: string; to: string }",
+      "起止值采用 YYYY-MM-DDTHH:mm，空字符串表示无边界",
+    ],
+    ["onChange", "(range: DateTimeRange) => void", "点击确定或清空范围时回调"],
+    ["defaultOpen", "boolean = false", "初次渲染时展开范围面板"],
+    ["timeZone", "string", "为今天和此刻指定 IANA 时区，默认使用浏览器时区"],
+    ["dateFormat", "DateFormat = DD/MM/YYYY", "日期显示与输入顺序"],
+    ["weekStartsOn", "WeekStart = 1", "日历首列，0 代表周日"],
   ],
   tooltip: [
     ["title", "ReactNode", "提示内容"],

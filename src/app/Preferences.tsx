@@ -9,7 +9,10 @@ import {
   type ReactNode,
 } from "react";
 import { ConfigProvider, theme as antTheme, type ThemeConfig } from "antd";
-import zhCN from "antd/locale/zh_CN";
+import zhCN from "antd/es/locale/zh_CN";
+import dayjs from "dayjs";
+import chineseDayjsLocale from "dayjs/locale/zh-cn";
+import { weekStarts } from "../domain/date";
 import {
   createTheme,
   appearancePalettes,
@@ -20,6 +23,16 @@ import {
   type Preferences,
 } from "./theme";
 
+// Give Ant Design a distinct Day.js locale for each week start so mounted
+// pickers update through ConfigProvider without changing the global locale.
+const dateLocales = weekStarts.map((weekStart) =>
+  dayjs.locale(
+    { ...chineseDayjsLocale, name: `zh-cn-week-${weekStart}`, weekStart },
+    undefined,
+    true,
+  ),
+);
+
 const PreferencesContext = createContext<{
   preferences: Preferences;
   preset: (typeof themePresets)[number];
@@ -29,7 +42,7 @@ const PreferencesContext = createContext<{
   storageError: boolean;
   settingsOpen: boolean;
   pageScrollOffset: number;
-  setSettingsOpen: (open: boolean) => void;
+  setSettingsOpen: (open: boolean, trigger?: HTMLElement | null) => void;
   updatePreferences: (value: Partial<Preferences>) => void;
   resetPreferences: () => void;
 } | null>(null);
@@ -82,6 +95,19 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
   const preset = themePresets.find((item) => item.id === preferences.themeId)!;
   const appearance = appearancePalettes[preset.mode];
   const reducedMotion = preferences.reduceMotion || systemReducedMotion;
+  const { weekStartsOn, dateFormat } = preferences;
+  const locale = useMemo(() => {
+    const datePicker = {
+      ...zhCN.DatePicker!,
+      lang: {
+        ...zhCN.DatePicker!.lang,
+        locale: dateLocales[weekStartsOn]!,
+        fieldDateFormat: dateFormat,
+        fieldDateTimeFormat: `${dateFormat} HH:mm:ss`,
+      },
+    };
+    return { ...zhCN, DatePicker: datePicker, Calendar: datePicker };
+  }, [weekStartsOn, dateFormat]);
   const activeTheme = useMemo(
     () => createTheme(preferences, reducedMotion),
     [preferences, reducedMotion],
@@ -127,12 +153,13 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
         storageError,
         settingsOpen,
         pageScrollOffset,
-        setSettingsOpen: (open) => {
+        setSettingsOpen: (open, trigger) => {
           if (open) {
             settingsTriggerRef.current =
-              document.activeElement instanceof HTMLElement
+              trigger ??
+              (document.activeElement instanceof HTMLElement
                 ? document.activeElement
-                : null;
+                : null);
             setPageScrollOffset(window.scrollY);
           }
           setSettingsOpen(open);
@@ -147,7 +174,7 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
       <ConfigProvider
         button={{ autoInsertSpace: false }}
         theme={activeTheme}
-        locale={zhCN}
+        locale={locale}
       >
         {children}
       </ConfigProvider>

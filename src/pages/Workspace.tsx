@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import {
   Alert,
   Avatar,
@@ -7,22 +7,11 @@ import {
   Drawer,
   Empty,
   Input,
-  Menu,
   Modal,
   Result,
   Spin,
 } from "antd";
-import {
-  AppstoreOutlined,
-  BellOutlined,
-  BuildOutlined,
-  DownOutlined,
-  LeftOutlined,
-  SearchOutlined,
-  SettingOutlined,
-  TeamOutlined,
-  HomeOutlined,
-} from "@ant-design/icons";
+import { BellOutlined, SearchOutlined, TeamOutlined } from "@ant-design/icons";
 import {
   Link,
   Navigate,
@@ -31,43 +20,30 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import { Brand } from "../components/Brand";
+import {
+  WorkspaceSidebar,
+  workspaceLinks as links,
+} from "../components/WorkspaceSidebar";
 import { SiteHeader } from "../components/SiteHeader";
 import { WorkspaceProvider, useWorkspace } from "../domain/Store";
 import { demoDate } from "../domain/model";
+import { usePreferences } from "../app/Preferences";
+import { formatDate } from "../domain/date";
 const Overview = lazy(() => import("./Overview"));
 const Customers = lazy(() => import("./Customers"));
 const Pipeline = lazy(() => import("./Pipeline"));
 const Settings = lazy(() => import("./Settings"));
-const links = [
-  {
-    key: "overview",
-    label: "经营概览",
-    icon: <AppstoreOutlined aria-hidden="true" />,
-  },
-  {
-    key: "customers",
-    label: "客户管理",
-    icon: <TeamOutlined aria-hidden="true" />,
-  },
-  {
-    key: "pipeline",
-    label: "商机看板",
-    icon: <BuildOutlined aria-hidden="true" />,
-  },
-  {
-    key: "settings",
-    label: "项目设置",
-    icon: <SettingOutlined aria-hidden="true" />,
-  },
-];
 function WorkspaceShell() {
+  const {
+    preferences: { dateFormat },
+  } = usePreferences();
   const { data, storageError } = useWorkspace();
   const location = useLocation();
   const navigate = useNavigate();
   const section = location.pathname.split("/")[2] ?? "overview";
   const current = links.find((x) => x.key === section)?.label ?? "页面不存在";
   const [mobile, setMobile] = useState(false);
+  const mobileTriggerRef = useRef<HTMLElement | null>(null);
   const [collapsed, setCollapsed] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -90,45 +66,19 @@ function WorkspaceShell() {
     return () => document.removeEventListener("keydown", handler);
   }, []);
   const sidebar = (
-    <>
-      <div className="workspace-brand">
-        <Brand caption="WORKSPACE" />
-      </div>
-      <Menu
-        theme="dark"
-        mode="inline"
-        inlineCollapsed={collapsed}
-        selectedKeys={[section]}
-        items={links.map((x) => ({
-          ...x,
-          label: (
-            <span>
-              {x.label}
-              {x.key === "customers" && (
-                <small className="nav-count">{data.customers.length}</small>
-              )}
-            </span>
-          ),
-        }))}
-        onClick={(e) => navigate(`/examples/${e.key}`)}
-      />
-      <div className="workspace-user">
-        <Avatar className="theme-avatar">DS</Avatar>
-        <span>Dalton</span>
-        <Button
-          type="text"
-          className="workspace-collapse"
-          aria-label={collapsed ? "展开侧栏" : "收起侧栏"}
-          icon={
-            <LeftOutlined
-              aria-hidden="true"
-              style={{ transform: collapsed ? "rotate(180deg)" : undefined }}
-            />
-          }
-          onClick={() => setCollapsed(!collapsed)}
-        />
-      </div>
-    </>
+    <WorkspaceSidebar
+      selectedKey={section}
+      collapsed={collapsed}
+      customerCount={data.customers.length}
+      onSelect={(key) => navigate(`/examples/${key}`)}
+      onToggle={() => setCollapsed(!collapsed)}
+      onAccountAction={() => {
+        if (mobile) {
+          setMobile(false);
+          return mobileTriggerRef.current;
+        }
+      }}
+    />
   );
   const matchedPages = links.filter((x) => !search || x.label.includes(search));
   const matchedCustomers = search
@@ -167,6 +117,10 @@ function WorkspaceShell() {
           brandCaption="WORKSPACE"
           current={current}
           onMenu={() => {
+            mobileTriggerRef.current =
+              document.activeElement instanceof HTMLElement
+                ? document.activeElement
+                : null;
             setCollapsed(false);
             setMobile(true);
           }}
@@ -198,7 +152,7 @@ function WorkspaceShell() {
             title="浏览器存储不可用，本次修改仅在当前页面保留。"
           />
         )}
-        <main className="workspace-content">
+        <main className="workspace-content" aria-label={current}>
           <Suspense
             fallback={
               <div className="page-loading">
@@ -283,14 +237,15 @@ function WorkspaceShell() {
         size={400}
       >
         <p className="muted" style={{ marginBottom: 24 }}>
-          截至演示基准日 {demoDate}，共 {due.length} 位客户需要跟进。
+          截至 {formatDate(demoDate, dateFormat)}，共 {due.length}{" "}
+          位客户需要跟进。
         </p>
         {due.length ? (
           due.map((c) => (
             <div className="notification-row" key={c.id}>
               <strong>{c.name}</strong>
               <p>
-                {c.contact} · 下次跟进 {c.followup}
+                {c.contact} · 下次跟进 {formatDate(c.followup, dateFormat)}
               </p>
               <Button
                 size="small"

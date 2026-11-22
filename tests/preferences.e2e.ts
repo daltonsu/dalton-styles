@@ -39,7 +39,11 @@ for (const preset of themePresets) {
       rgb(appearance.text),
     );
     const suffix = preset.id === "clay" ? "" : `-${preset.id}`;
-    for (const [index, name] of ["components", "workspace"].entries()) {
+    for (const [index, name] of [
+      "components",
+      "workspace",
+      "zero-three",
+    ].entries()) {
       const image = page.locator(".entry-thumbnail").nth(index);
       await expect(image).toHaveAttribute(
         "src",
@@ -96,10 +100,9 @@ for (const preset of themePresets) {
     await expect(sidebar).toHaveCSS("background-color", rgb(preset.navigation));
     await expect(page.locator("#appearance")).toContainText(preset.name);
     await page.locator(".brand:visible").click();
-    await expect(page.locator(".entry-thumbnail").last()).toHaveAttribute(
-      "src",
-      `/previews/workspace${suffix}.png`,
-    );
+    await expect(
+      page.locator('a.entry[href="#/examples/overview"] .entry-thumbnail'),
+    ).toHaveAttribute("src", `/previews/workspace${suffix}.png`);
   });
 }
 
@@ -336,7 +339,11 @@ test("损坏偏好回退，系统减少动画与存储失败得到正确处理",
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await page.evaluate(
-    (key) => localStorage.setItem(key, '{"themeId":"missing","radius":-10}'),
+    (key) =>
+      localStorage.setItem(
+        key,
+        '{"themeId":"missing","radius":-10,"weekStartsOn":6,"dateFormat":"invalid"}',
+      ),
     preferencesKey,
   );
   await page.reload();
@@ -347,6 +354,12 @@ test("损坏偏好回退，系统减少动画与存储失败得到正确处理",
   );
   await page.getByRole("button", { name: "打开全局设置" }).click();
   await expect(page.getByRole("radio", { name: "默认 · 6px" })).toBeChecked();
+  await expect(
+    page.getByRole("combobox", { name: "每周起始日" }).locator(".."),
+  ).toHaveText("周一");
+  await expect(
+    page.getByRole("combobox", { name: "日期显示顺序" }).locator(".."),
+  ).toHaveText("日/月/年 · 19/11/2026");
   await page.getByRole("button", { name: "收起全局设置" }).click();
   await page.evaluate(
     (key) => localStorage.setItem(key, "{broken"),
@@ -370,4 +383,69 @@ test("损坏偏好回退，系统减少动画与存储失败得到正确处理",
     "background-color",
     "rgb(44, 106, 75)",
   );
+});
+
+test("日期顺序和每周起始日全局生效，刷新保留并可重置", async ({ page }) => {
+  await page.clock.setFixedTime(new Date("2026-11-19T05:37:00Z"));
+  await page.goto("/");
+  await page.getByRole("button", { name: "打开全局设置" }).click();
+  const weekStart = page.getByRole("combobox", { name: "每周起始日" });
+  const dateOrder = page.getByRole("combobox", { name: "日期显示顺序" });
+  await weekStart.click();
+  await expect(page.getByRole("option")).toHaveText(["周一", "周日"]);
+  await page.getByRole("option", { name: "周日", exact: true }).click();
+  await dateOrder.click();
+  await page.getByRole("option", { name: "月/日/年 · 11/19/2026" }).click();
+  await page.getByRole("button", { name: "收起全局设置" }).click();
+
+  await page.goto("/#/components/date-time-picker");
+  const panel = page.getByRole("group", { name: "日期时间范围" });
+  await expect(panel.getByRole("columnheader").first()).toHaveText("周日");
+  const nov1 = panel.locator('[data-day="2026-11-01"]');
+  await expect(nov1).toHaveAccessibleName("11/01/2026 周日");
+  await expect(
+    panel.getByRole("row").nth(1).getByRole("gridcell").first(),
+  ).toContainText("1");
+  await nov1.click();
+  await expect(page.getByRole("textbox", { name: "开始日期" })).toHaveValue(
+    "11/01/2026",
+  );
+  await panel.getByRole("button", { name: "此刻" }).click();
+  const endDate = page.getByRole("textbox", { name: "结束日期" });
+  await endDate.fill("11/19/2026");
+  await endDate.press("Enter");
+  const endTime = page.getByRole("textbox", { name: "结束时间" });
+  await endTime.fill("15:00");
+  await endTime.press("Enter");
+  await panel.getByRole("button", { name: "确定", exact: true }).click();
+  await expect(page.locator(".dtr-trigger")).toContainText("11/19/2026 15:00");
+
+  await page.goto("/#/components/date-picker");
+  const datePicker = page.getByRole("textbox", { name: "默认日期" });
+  await expect(datePicker).toHaveValue("11/16/2026");
+  await datePicker.click();
+  await expect(
+    page.locator(".ant-picker-dropdown:visible thead th").first(),
+  ).toHaveText("日");
+  await page.goto("/#/components/calendar");
+  await expect(
+    page.locator(".ant-picker-calendar thead th").first(),
+  ).toHaveText("日");
+
+  await page.goto("/#/examples/settings");
+  await page.reload();
+  const demoDate = page.locator("#regional code").filter({ hasText: /2026/ });
+  await expect(demoDate).toHaveText("11/16/2026");
+  await page.getByRole("button", { name: "调整全局外观" }).click();
+  await expect(weekStart.locator("..")).toHaveText("周日");
+  await expect(dateOrder.locator("..")).toHaveText("月/日/年 · 11/19/2026");
+  await page.getByRole("button", { name: "恢复默认" }).click();
+  await expect(weekStart.locator("..")).toHaveText("周一");
+  await expect(dateOrder.locator("..")).toHaveText("日/月/年 · 19/11/2026");
+  await page.getByRole("button", { name: "收起全局设置" }).click();
+  await expect(demoDate).toHaveText("16/11/2026");
+  await page.goto("/#/components/calendar");
+  await expect(
+    page.locator(".ant-picker-calendar thead th").first(),
+  ).toHaveText("一");
 });

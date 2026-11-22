@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 test("首页入口、客户新增编辑、详情与刷新持久化", async ({ page }) => {
   await page.goto("/");
   await page.locator("a.entry").nth(1).click();
-  await expect(page.locator(".page-title h1")).toHaveText("经营概览");
+  await expect(page.getByRole("main", { name: "经营概览" })).toBeVisible();
   await page
     .locator(".workspace-sidebar")
     .getByRole("menuitem", { name: /客户管理/ })
@@ -112,9 +112,15 @@ test("手机布局、客户导出与页面运行异常", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.setViewportSize({ width: 390, height: 844 });
-  for (const route of ["overview", "customers", "pipeline", "settings"]) {
+  for (const [route, title] of [
+    ["overview", "经营概览"],
+    ["customers", "客户管理"],
+    ["pipeline", "商机看板"],
+    ["settings", "项目设置"],
+  ]) {
     await page.goto(`/#/examples/${route}`);
-    await expect(page.locator(".page-title h1")).toBeVisible();
+    await expect(page.getByRole("main", { name: title })).toBeVisible();
+    await expect(page.locator(".header-current")).toHaveText(title);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= window.innerWidth,
@@ -128,4 +134,166 @@ test("手机布局、客户导出与页面运行异常", async ({ page }) => {
   await page.getByRole("button", { name: "打开导航" }).click();
   await expect(page.getByRole("dialog")).toContainText("经营概览");
   expect(errors).toEqual([]);
+});
+
+test("首页零三入口只展示侧栏，支持菜单、折叠及返回", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    const entry = page.locator('a.entry[href="#/examples/03"]');
+    await expect(
+      entry.getByRole("heading", { name: "零三Zero Three" }),
+    ).toBeVisible();
+    await entry.click();
+    await expect(page).toHaveURL(/#\/examples\/03$/);
+    const sidebar = page.getByRole("complementary", { name: "零三侧边栏" });
+    await expect(sidebar).toBeVisible();
+    await expect(page.getByRole("banner")).toHaveCount(0);
+    await expect(page.getByRole("main", { name: "零三预览" })).toBeEmpty();
+    await expect(page.locator(".workspace-content")).toHaveCount(0);
+    await sidebar
+      .getByRole("menuitem", { name: "客户管理", exact: true })
+      .click();
+    await expect(page).toHaveURL(/#\/examples\/03\/customers$/);
+    await expect(
+      sidebar.getByRole("menuitem", { name: "客户管理", exact: true }),
+    ).toHaveClass(/ant-menu-item-selected/);
+    await page.reload();
+    await expect(
+      sidebar.getByRole("menuitem", { name: "客户管理", exact: true }),
+    ).toHaveClass(/ant-menu-item-selected/);
+    const collapse = sidebar.getByRole("button", {
+      name: "收起侧栏",
+      exact: true,
+    });
+    await expect(collapse).toHaveAttribute("aria-expanded", "true");
+    await expect(collapse.locator('[data-icon="left"]')).toBeVisible();
+    const expandedButton = (await collapse.boundingBox())!;
+    const expandedSidebar = (await sidebar.boundingBox())!;
+    const firstItem = (await sidebar
+      .getByRole("menuitem")
+      .first()
+      .boundingBox())!;
+    expect(expandedButton.y).toBe(firstItem.y);
+    expect(expandedButton.height).toBe(firstItem.height);
+    expect(expandedButton.y).toBeLessThan(100);
+    expect(expandedButton.x).toBeLessThan(expandedSidebar.width);
+    expect(expandedButton.x + expandedButton.width).toBeGreaterThan(
+      expandedSidebar.width,
+    );
+    await collapse.click();
+    await expect(sidebar).toHaveCSS("width", "80px");
+    const expand = sidebar.getByRole("button", {
+      name: "展开侧栏",
+      exact: true,
+    });
+    await expect(expand).toHaveAttribute("aria-expanded", "false");
+    await expect(expand.locator('[data-icon="right"]')).toBeVisible();
+    const collapsedButton = (await expand.boundingBox())!;
+    const firstCollapsedItem = (await sidebar
+      .getByRole("menuitem")
+      .first()
+      .boundingBox())!;
+    expect(collapsedButton.y).toBe(firstCollapsedItem.y);
+    expect(collapsedButton.height).toBe(firstCollapsedItem.height);
+    expect(collapsedButton.y).toBe(expandedButton.y);
+    expect(collapsedButton.x).toBeLessThan(80);
+    expect(collapsedButton.x + collapsedButton.width).toBeGreaterThan(80);
+    await expand.click();
+    await expect(sidebar).toHaveCSS("width", "240px");
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    await sidebar.getByRole("link", { name: "Dalton Styles 首页" }).click();
+    await expect(entry).toBeVisible();
+  }
+  expect(errors).toEqual([]);
+});
+
+for (const width of [1440, 390]) {
+  test(`零三账号菜单在 ${width}px 支持上弹、关闭、设置和退出`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/#/examples/03");
+    const account = page.getByRole("button", { name: "Dalton 账号菜单" });
+    const menu = page.getByRole("menu", { name: "账号菜单" });
+    await expect(menu).toBeHidden();
+    await account.click();
+    await expect(account).toHaveAttribute("aria-expanded", "true");
+    await expect(
+      menu.getByRole("menuitem", { name: "设置", exact: true }),
+    ).toBeVisible();
+    await expect(
+      menu.getByRole("menuitem", { name: "退出登录" }),
+    ).toBeVisible();
+    await expect(menu.getByRole("menuitem", { name: "退出登录" })).toHaveCSS(
+      "color",
+      "rgb(255, 150, 145)",
+    );
+    const menuBox = (await menu.boundingBox())!;
+    const accountBox = (await account.boundingBox())!;
+    expect(menuBox.y + menuBox.height).toBeLessThanOrEqual(accountBox.y);
+    expect(menuBox.x).toBeGreaterThanOrEqual(0);
+    expect(menuBox.x + menuBox.width).toBeLessThanOrEqual(width);
+    await account.click();
+    await expect(menu).toBeHidden();
+    await account.click();
+    await page.getByRole("main", { name: "零三预览" }).click();
+    await expect(menu).toBeHidden();
+    await account.focus();
+    await page.keyboard.press("ArrowUp");
+    await expect(menu).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(menu).toBeHidden();
+    await expect(account).toBeFocused();
+    await account.click();
+    await menu.getByRole("menuitem", { name: "设置", exact: true }).click();
+    await expect(page.getByRole("dialog", { name: /全局设置/ })).toBeVisible();
+    await expect(menu).toBeHidden();
+    await page.getByRole("button", { name: "收起全局设置" }).click();
+    await expect(account).toBeFocused();
+    await page.getByRole("button", { name: "收起侧栏", exact: true }).click();
+    await account.click();
+    await expect(menu).toBeVisible();
+    const collapsedMenu = (await menu.boundingBox())!;
+    expect(collapsedMenu.x).toBeGreaterThanOrEqual(0);
+    expect(collapsedMenu.x + collapsedMenu.width).toBeLessThanOrEqual(width);
+    await menu.getByRole("menuitem", { name: "退出登录" }).click();
+    await expect(page).toHaveURL(/\/#\/$/);
+    await expect(page.locator('a.entry[href="#/examples/03"]')).toBeVisible();
+  });
+}
+
+test("原页面样例的桌面和手机侧栏共用账号菜单", async ({ page }) => {
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/#/examples/overview");
+    if (width === 390)
+      await page.getByRole("button", { name: "打开导航" }).click();
+    const account = page
+      .getByRole("button", { name: "Dalton 账号菜单" })
+      .filter({ visible: true });
+    await account.click();
+    const menu = page.getByRole("menu", { name: "账号菜单" });
+    await expect(
+      menu.getByRole("menuitem", { name: "设置", exact: true }),
+    ).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(menu).toBeHidden();
+    await expect(account).toBeFocused();
+    await expect(page.getByRole("main", { name: "经营概览" })).toBeAttached();
+    await account.click();
+    await menu.getByRole("menuitem", { name: "设置", exact: true }).click();
+    await expect(page.getByRole("dialog", { name: /全局设置/ })).toBeVisible();
+    await expect(page.getByRole("dialog")).toHaveCount(1);
+    await page.getByRole("button", { name: "收起全局设置" }).click();
+    await expect(
+      width === 390 ? page.getByRole("button", { name: "打开导航" }) : account,
+    ).toBeFocused();
+  }
 });

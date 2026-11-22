@@ -5,6 +5,7 @@ import { useWorkspace } from "../domain/Store";
 import { customersCsv, demoDate } from "../domain/model";
 import { downloadText } from "../catalog/demos/shared";
 import { usePreferences } from "../app/Preferences";
+import { formatDate } from "../domain/date";
 export default function Settings() {
   const { data, setData, reset } = useWorkspace();
   const { modal, message } = App.useApp();
@@ -12,19 +13,12 @@ export default function Settings() {
     usePreferences();
   return (
     <>
-      <div className="page-title">
-        <div>
-          <span className="eyebrow">MAKE IT YOUR WORKSPACE</span>
-          <h1>项目设置</h1>
-          <p>调整显示偏好，管理当前浏览器中的演示数据。</p>
-        </div>
-      </div>
       <div className="settings-layout">
         <nav className="settings-nav" aria-label="设置分组">
           {[
             ["appearance", "外观与显示"],
             ["regional", "地区与格式"],
-            ["demo-data", "演示数据"],
+            ["demo-data", "数据管理"],
           ].map(([id, label]) => (
             <Button
               key={id}
@@ -76,28 +70,19 @@ export default function Settings() {
             </Setting>
           </Card>
           <Card id="regional" title="地区与格式">
-            <Setting
-              label="币种与数字"
-              note="保留原样例的印尼盾金额，不显示小数。"
-            >
+            <Setting label="币种与数字" note="金额使用印尼盾，不显示小数。">
               <code>IDR · id-ID</code>
             </Setting>
-            <Setting
-              label="演示日期"
-              note="使用固定基准日，便于复核跟进和统计。"
-            >
-              <code>{demoDate}</code>
+            <Setting label="统计基准日期" note="跟进和统计使用的固定基准日期。">
+              <code>{formatDate(demoDate, preferences.dateFormat)}</code>
             </Setting>
-            <Setting label="界面语言" note="组件和样例统一使用简体中文。">
+            <Setting label="界面语言" note="统一使用简体中文。">
               <span>简体中文</span>
             </Setting>
           </Card>
-          <Card id="demo-data" title="演示数据">
-            <p className="settings-note">
-              客户和商机使用模拟数据，修改保存在当前浏览器。可随时恢复初始样例。
-            </p>
+          <Card id="demo-data" title="数据管理">
             <Setting
-              label="导出演示客户"
+              label="导出客户"
               note={`当前共有 ${data.customers.length} 位客户，此处导出全部记录。`}
             >
               <Button
@@ -115,7 +100,7 @@ export default function Settings() {
               </Button>
             </Setting>
             <Setting
-              label="恢复初始演示数据"
+              label="恢复初始数据"
               note="替换客户和商机数据，保留显示偏好。"
             >
               <Button
@@ -123,16 +108,16 @@ export default function Settings() {
                 icon={<ReloadOutlined aria-hidden="true" />}
                 onClick={() =>
                   modal.confirm({
-                    title: "恢复初始演示数据？",
+                    title: "恢复初始数据？",
                     content:
-                      "当前客户修改和商机阶段将被初始样例替换，显示偏好保留。",
+                      "当前客户修改和商机阶段将被初始数据替换，显示偏好保留。",
                     icon: null,
                     okText: "恢复初始数据",
                     okButtonProps: { danger: true },
                     autoFocusButton: "cancel",
                     onOk: () => {
                       reset();
-                      message.success("已恢复初始演示数据");
+                      message.success("已恢复初始数据");
                     },
                   })
                 }

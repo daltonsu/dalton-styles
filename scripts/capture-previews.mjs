@@ -6,6 +6,7 @@ const localChrome =
 const executablePath =
   process.env.PLAYWRIGHT_CHROME_PATH ??
   (existsSync(localChrome) ? localChrome : undefined);
+const requested = new Set(process.argv.slice(2));
 const browser = await chromium.launch({ executablePath, headless: true });
 try {
   const page = await browser.newPage({
@@ -27,15 +28,24 @@ try {
     for (const [name, route] of [
       ["components", "/components/button"],
       ["workspace", "/examples/overview"],
+      ["zero-three", "/examples/03"],
     ]) {
+      if (requested.size && !requested.has(name)) continue;
       await page.goto(`http://127.0.0.1:5173/#${route}`);
-      await page.locator(".page-title h1").waitFor();
+      await page
+        .locator(
+          name === "zero-three"
+            ? ".sidebar-preview .workspace-sidebar"
+            : ".header-current",
+        )
+        .waitFor();
       if (name === "components")
         await page
           .locator('[data-example="button-0"] .ant-btn')
           .first()
           .waitFor();
-      else await page.locator(".recharts-surface").first().waitFor();
+      else if (name === "workspace")
+        await page.locator(".recharts-surface").first().waitFor();
       await page.evaluate(() => document.fonts.ready);
       await page.waitForTimeout(600);
       const suffix = theme === "clay" ? "" : `-${theme}`;

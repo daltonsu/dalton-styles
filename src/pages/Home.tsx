@@ -16,6 +16,13 @@ const entries = [
     description: "在完整后台中体验组件的组合",
     preview: "workspace",
   },
+  {
+    to: "/examples/03",
+    title: "零三",
+    en: "Zero Three",
+    description: "只保留侧边栏的页面预览",
+    preview: "zero-three",
+  },
 ];
 export default function Home() {
   const { preset } = usePreferences();

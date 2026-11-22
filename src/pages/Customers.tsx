@@ -58,7 +58,13 @@ const optionalColumns = [
   { value: "followup", label: "下次跟进" },
   { value: "city", label: "城市" },
 ];
+import { usePreferences } from "../app/Preferences";
+import { formatDate } from "../domain/date";
+
 export default function Customers() {
+  const {
+    preferences: { dateFormat },
+  } = usePreferences();
   const { data, setData } = useWorkspace();
   const { message, modal } = App.useApp();
   const [params, setParams] = useSearchParams();
@@ -143,7 +149,7 @@ export default function Customers() {
     try {
       const values = await form.validateFields();
       if (editor === "new" && data.customers.length >= 500) {
-        message.error("演示最多保存 500 位客户");
+        message.error("最多保存 500 位客户");
         return;
       }
       const name = values.name.trim();
@@ -343,7 +349,7 @@ export default function Customers() {
                       : undefined,
                 }}
               >
-                {date}
+                {formatDate(date, dateFormat)}
               </span>
             ),
           },
@@ -425,12 +431,7 @@ export default function Customers() {
   );
   return (
     <>
-      <div className="page-title">
-        <div>
-          <span className="eyebrow">CUSTOMER RELATIONSHIPS</span>
-          <h1>客户管理</h1>
-          <p>让每一段客户关系，都有迹可循。</p>
-        </div>
+      <div className="workspace-toolbar">
         <Space wrap>
           <Button
             icon={<DownloadOutlined aria-hidden="true" />}
@@ -782,7 +783,7 @@ export default function Customers() {
                 ["来源", detail.source],
                 ["负责人", owners.find((o) => o.id === detail.owner)?.name],
                 ["预计金额", money(detail.amount)],
-                ["下次跟进", detail.followup],
+                ["下次跟进", formatDate(detail.followup, dateFormat)],
                 ["备注", detail.notes || "暂无备注"],
               ].map(([label, children]) => ({ key: label, label, children }))}
             />
@@ -795,9 +796,10 @@ export default function Customers() {
             </Button>
             <h3 className="section-title">跟进记录</h3>
             <Timeline
-              items={[...detail.events]
-                .reverse()
-                .map((e) => ({ title: e.date, content: e.text }))}
+              items={[...detail.events].reverse().map((e) => ({
+                title: formatDate(e.date, dateFormat),
+                content: e.text,
+              }))}
             />
           </>
         )}

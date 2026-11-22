@@ -20,14 +20,6 @@ export default function Pipeline() {
   };
   return (
     <>
-      <div className="page-title">
-        <div>
-          <span className="eyebrow">OPPORTUNITIES IN MOTION</span>
-          <h1>商机看板</h1>
-          <p>从初次接洽，到达成合作。</p>
-        </div>
-        <Tag color="success">{data.deals.length} 个演示商机</Tag>
-      </div>
       <Alert
         className="pipeline-tip"
         type="info"

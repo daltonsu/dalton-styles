@@ -34,6 +34,8 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { landscape, Output, rows, treeData, type DemoProps } from "./shared";
+import { usePreferences } from "../../app/Preferences";
+import { formatDate } from "../../domain/date";
 const columns = [
   { title: "客户", dataIndex: "name", key: "name" },
   {
@@ -52,6 +54,9 @@ const columns = [
   },
 ];
 export default function DisplayDemos({ id, variant: v }: DemoProps) {
+  const {
+    preferences: { dateFormat },
+  } = usePreferences();
   const { message } = App.useApp();
   const [value, setValue] = useState("客户资料");
   const [selected, setSelected] = useState(false);
@@ -447,10 +452,16 @@ export default function DisplayDemos({ id, variant: v }: DemoProps) {
       return (
         <Timeline
           items={[
-            { title: "2026-11-01", content: "建立客户档案" },
-            { title: "2026-11-02", content: "完成首次沟通" },
             {
-              title: "2026-11-04",
+              title: formatDate("2026-11-01", dateFormat),
+              content: "建立客户档案",
+            },
+            {
+              title: formatDate("2026-11-02", dateFormat),
+              content: "完成首次沟通",
+            },
+            {
+              title: formatDate("2026-11-04", dateFormat),
               content: v === 0 ? "确认合作方案" : "等待客户反馈",
               color: v === 0 ? "green" : "gray",
             },
